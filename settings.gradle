@@ -1,0 +1,23 @@
+rootProject.name = 'MagmaKT'
+
+// MagmaKt Platform
+include 'magma-platform'
+
+include 'magma-platform:magma-platform-base'
+findProject(':magma-platform:magma-platform-base')?.name = 'magma-platform-base'
+
+include 'magma-platform:magma-platform-bukkit'
+findProject(':magma-platform:magma-platform-bukkit')?.name = 'magma-platform-bukkit'
+
+include 'magma-platform:magma-platform-bungee'
+findProject(':magma-platform:magma-platform-bungee')?.name = 'magma-platform-bungee'
+
+// MagmaKT Annotations
+include 'magma-annotations'
+
+include 'magma-annotations:magma-annotations-bukkit-platform'
+findProject(':magma-annotations:magma-annotations-bukkit-platform')?.name = 'magma-annotations-bukkit-platform'
+
+include 'magma-annotations:magma-annotations-bungee-platform'
+findProject(':magma-annotations:magma-annotations-bungee-platform')?.name = 'magma-annotations-bungee-platform'
+
