@@ -1,6 +1,8 @@
 package de.jalumu.magma.platform.base.platform.util;
 
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.util.logging.Logger;
 

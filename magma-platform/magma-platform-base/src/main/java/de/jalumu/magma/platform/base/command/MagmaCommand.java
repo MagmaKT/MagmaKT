@@ -4,7 +4,8 @@ import java.util.Set;
 
 public interface MagmaCommand {
 
-    boolean onCommand();
+    boolean onCommand(MagmaCommandSender sender, String command, String[] args);
+
     Set<String> onTabComplete();
 
 }

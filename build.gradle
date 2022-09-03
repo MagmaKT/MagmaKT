@@ -12,6 +12,15 @@ repositories {
     mavenCentral()
 }
 
+subprojects {
+    repositories {
+        maven {
+            name = "jalumu-repo"
+            url = "https://repo.jalumu.dev/repository/maven-public/"
+        }
+    }
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 

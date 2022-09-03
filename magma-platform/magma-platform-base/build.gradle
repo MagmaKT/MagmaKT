@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
 group 'org.example'
@@ -10,6 +10,11 @@ repositories {
 }
 
 dependencies {
+
+    api "net.kyori:adventure-api:4.11.0"
+    api "net.kyori:adventure-text-minimessage:4.11.0"
+
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
