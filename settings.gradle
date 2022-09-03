@@ -21,3 +21,7 @@ findProject(':magma-annotations:magma-annotations-bukkit-platform')?.name = 'mag
 include 'magma-annotations:magma-annotations-bungee-platform'
 findProject(':magma-annotations:magma-annotations-bungee-platform')?.name = 'magma-annotations-bungee-platform'
 
+include 'magma-modules'
+include 'magma-modules:magma-console-module'
+findProject(':magma-modules:magma-console-module')?.name = 'magma-console-module'
+

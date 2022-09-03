@@ -12,5 +12,6 @@ public interface MagmaModule {
     void onUnload();
 
     MagmaPlatform getPlatform();
+    boolean isCompatible(MagmaPlatform platform);
 
 }
