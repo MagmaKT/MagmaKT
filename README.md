@@ -8,6 +8,10 @@
 MagmaKT is a framework for easy Minecraft plugin development. It allows running a plugin with a single codebase on multiple Minecraft servers and proxies. It can be easily extended with internal, but also external modules. Most modules can be used on multiple platforms without changing the plugin's code.
 
 ## Main Features
+- Runs on Bukkit and Bungeecord (Velocity and Sponge support will be added later)
+- One API, Multiple Platforms Supported
+- Can be easily integrated into existing plugins
+- Can be easily extended with modules
 
 ## Intigrated Modules
 
