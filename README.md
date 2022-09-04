@@ -9,3 +9,12 @@ MagmaKT is a framework for easy Minecraft plugin development. It allows running 
 
 ## Main Features
 
+## Intigrated Modules
+
+## Various integration options
+
+## Where is MagmaKT used
+### Open-Source Plugins
+
+### Minecraft Servers
+
