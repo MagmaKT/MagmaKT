@@ -14,6 +14,12 @@ MagmaKT is a framework for easy Minecraft plugin development. It allows running 
 - Can be easily extended with modules
 
 ## Intigrated Modules
+### Magma-Console
+Supported Platforms: Bukkit
+#### Features
+- Enable/Disable the Chat for specific Players/Worlds/Servers
+- Customizable chat format
+- Show Player Ranks in Chat
 
 ## Various integration options
 
