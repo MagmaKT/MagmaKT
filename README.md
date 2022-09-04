@@ -18,3 +18,4 @@ MagmaKT is a framework for easy Minecraft plugin development. It allows running 
 
 ### Minecraft Servers
 
+## MagmaKT Statistics
