@@ -13,6 +13,8 @@ public interface MagmaPlatform {
     String getPlatformVersion();
     Logger getLogger();
 
+    Object getMagmaPluginInstance();
+
     ModuleLoader getModuleLoader();
 
 }

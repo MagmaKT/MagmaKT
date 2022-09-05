@@ -30,9 +30,9 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaConsoleModule());
-        moduleLoader.enableModule("Magma-Console");
 
         SplashScreen.splashScreen(this);
+        moduleLoader.enableModule("Magma-Console");
     }
 
     @Override
@@ -61,6 +61,11 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public String getPlatformVersion() {
         return getServer().getVersion();
+    }
+
+    @Override
+    public Object getMagmaPluginInstance() {
+        return this;
     }
 
     @Override

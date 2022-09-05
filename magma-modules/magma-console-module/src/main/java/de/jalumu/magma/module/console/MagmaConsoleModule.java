@@ -1,8 +1,11 @@
 package de.jalumu.magma.module.console;
 
+import de.jalumu.magma.module.console.events.ChatEvents;
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 
 public class MagmaConsoleModule implements MagmaModule {
 
@@ -21,6 +24,7 @@ public class MagmaConsoleModule implements MagmaModule {
     @Override
     public void onEnable() {
         platform.getLogger().info("Enable");
+        Bukkit.getPluginManager().registerEvents(new ChatEvents(), (Plugin) platform.getMagmaPluginInstance());
     }
 
     @Override

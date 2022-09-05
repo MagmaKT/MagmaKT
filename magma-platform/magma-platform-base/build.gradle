@@ -13,6 +13,7 @@ dependencies {
 
     api "net.kyori:adventure-api:4.11.0"
     api "net.kyori:adventure-text-minimessage:4.11.0"
+    api "net.kyori:adventure-text-serializer-legacy:4.11.0"
 
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

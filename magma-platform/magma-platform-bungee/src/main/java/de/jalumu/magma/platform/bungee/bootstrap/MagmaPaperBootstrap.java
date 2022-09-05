@@ -60,6 +60,11 @@ public class MagmaPaperBootstrap extends Plugin implements MagmaPlatform {
     }
 
     @Override
+    public Object getMagmaPluginInstance() {
+        return this;
+    }
+
+    @Override
     public ModuleLoader getModuleLoader() {
         return null;
     }
