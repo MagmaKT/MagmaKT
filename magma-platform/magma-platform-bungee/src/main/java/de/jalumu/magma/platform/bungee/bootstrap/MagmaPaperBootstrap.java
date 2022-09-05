@@ -1,6 +1,7 @@
 package de.jalumu.magma.platform.bungee.bootstrap;
 
 import de.jalumu.magma.annotation.bungee.platform.application.BungeecordPlugin;
+import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
@@ -56,5 +57,10 @@ public class MagmaPaperBootstrap extends Plugin implements MagmaPlatform {
     @Override
     public String getPlatformVersion() {
         return getProxy().getVersion();
+    }
+
+    @Override
+    public ModuleLoader getModuleLoader() {
+        return null;
     }
 }

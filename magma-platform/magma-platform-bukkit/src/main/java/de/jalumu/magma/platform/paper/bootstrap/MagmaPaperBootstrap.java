@@ -1,9 +1,12 @@
 package de.jalumu.magma.platform.paper.bootstrap;
 
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
+import de.jalumu.magma.module.console.MagmaConsoleModule;
+import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
+import de.jalumu.magma.platform.paper.module.BukkitModuleLoader;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,6 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
+
+    private ModuleLoader moduleLoader;
 
     public BukkitAudiences adventure() {
         if(this.adventure == null) {
@@ -22,6 +27,11 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public void onEnable() {
         this.adventure = BukkitAudiences.create(this);
+
+        moduleLoader = new BukkitModuleLoader(this);
+        moduleLoader.registerModule(new MagmaConsoleModule());
+        moduleLoader.enableModule("Magma-Console");
+
         SplashScreen.splashScreen(this);
     }
 
@@ -51,6 +61,11 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public String getPlatformVersion() {
         return getServer().getVersion();
+    }
+
+    @Override
+    public ModuleLoader getModuleLoader() {
+        return moduleLoader;
     }
 
 

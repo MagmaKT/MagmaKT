@@ -15,22 +15,22 @@ public class MagmaConsoleModule implements MagmaModule {
 
     @Override
     public void onLoad() {
-
+        platform.getLogger().info("Load");
     }
 
     @Override
     public void onEnable() {
-
+        platform.getLogger().info("Enable");
     }
 
     @Override
     public void onDisable() {
-
+        platform.getLogger().info("Disable");
     }
 
     @Override
     public void onUnload() {
-
+        platform.getLogger().info("Unload");
     }
 
     @Override

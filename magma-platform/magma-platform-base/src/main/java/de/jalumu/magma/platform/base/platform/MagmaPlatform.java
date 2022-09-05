@@ -1,5 +1,7 @@
 package de.jalumu.magma.platform.base.platform;
 
+import de.jalumu.magma.platform.base.module.ModuleLoader;
+
 import java.util.logging.Logger;
 
 public interface MagmaPlatform {
@@ -10,5 +12,7 @@ public interface MagmaPlatform {
     String getPlatformName();
     String getPlatformVersion();
     Logger getLogger();
+
+    ModuleLoader getModuleLoader();
 
 }
