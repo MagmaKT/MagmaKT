@@ -6,7 +6,10 @@ import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
+import de.jalumu.magma.platform.base.text.Notification;
+import de.jalumu.magma.platform.base.text.NotificationProvider;
 import de.jalumu.magma.platform.paper.module.BukkitModuleLoader;
+import de.jalumu.magma.platform.paper.text.BukkitNotificationProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,12 +30,16 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public void onEnable() {
         this.adventure = BukkitAudiences.create(this);
+        NotificationProvider.setProvider(new BukkitNotificationProvider());
 
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaConsoleModule());
 
         SplashScreen.splashScreen(this);
         moduleLoader.enableModule("Magma-Console");
+
+        Notification.info("<red>Test").send(adventure().console());
+
     }
 
     @Override
