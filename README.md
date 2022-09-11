@@ -4,6 +4,9 @@
 [![Jenkins](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fbuild.jalumu.dev%2Fjob%2FMagmaKT%2F&style=flat)](https://build.jalumu.dev/job/MagmaKT/lastStableBuild/)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/jalumu/MagmaKT)
 
+![bStats Players](https://img.shields.io/bstats/players/16417)
+![bStats Servers](https://img.shields.io/bstats/servers/16417?label=bukkit-servers)
+
 **MagmaKT is still in development and currently not suitable for productive servers!**
 
 ## What is MagmaKT?
