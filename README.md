@@ -26,11 +26,10 @@ Supported Platforms: Bukkit
 - Customizable chat format
 - Show Player Ranks in Chat
 
-## Various integration options
-
 ## Where is MagmaKT used
 ### Open-Source Plugins
 
 ### Minecraft Servers
 
 ## MagmaKT Statistics
+![bstats Metrics](https://bstats.org/signatures/bukkit/MagmaKt-Bukkit.svg)
