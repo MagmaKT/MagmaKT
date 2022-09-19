@@ -12,6 +12,10 @@ import de.jalumu.magma.platform.paper.text.BukkitNotificationProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 @BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {})
 public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
@@ -27,9 +31,19 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
     }
 
     @Override
+    public void onLoad() {
+        try {
+            Files.createDirectories(this.getDataFolder().toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void onEnable() {
+
         this.adventure = BukkitAudiences.create(this);
-        NotificationProvider.setProvider(new BukkitNotificationProvider());
+        NotificationProvider.setProvider(new BukkitNotificationProvider(this));
 
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaConsoleModule());
