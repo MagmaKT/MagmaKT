@@ -20,14 +20,4 @@ public class ChatEvents implements Listener {
         //event.setMessage("ASDF");
     }
 
-    @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
-        Notification.debug("Test").send(event.getPlayer());
-        Notification.info("Test").send(event.getPlayer());
-        Notification.success("Test").send(event.getPlayer());
-        Notification.warning("Test").send(event.getPlayer());
-        Notification.error("Test").send(event.getPlayer());
-        event.getPlayer().sendMessage("Ok?");
-    }
-
 }

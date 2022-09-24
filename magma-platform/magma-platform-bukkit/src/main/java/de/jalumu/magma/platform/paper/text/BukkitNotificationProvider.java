@@ -64,8 +64,6 @@ public class BukkitNotificationProvider extends NotificationProvider {
     protected Notification getDebug() {
         String template = configuration.getString("notification.global.debug.template");
         String sound = configuration.getString("notification.global.debug.sound");
-        System.err.println(template);
-        System.err.println(sound);
         BukkitNotification notification = new BukkitNotification();
         notification.setNotificationTemplate(template);
         notification.setDefaultSound(sound);

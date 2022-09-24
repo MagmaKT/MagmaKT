@@ -25,8 +25,6 @@ public class BukkitNotification extends NotificationBaseImp {
 
     @Override
     public Sound getDefaultSound() {
-        System.err.println(templateString);
-        System.err.println(soundString);
         return Sound.sound(Key.key(soundString,':'), Sound.Source.MASTER,1f,1f);
     }
 
