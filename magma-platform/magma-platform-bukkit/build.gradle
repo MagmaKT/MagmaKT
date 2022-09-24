@@ -26,6 +26,7 @@ dependencies {
 
     // External dependencies
     implementation "net.kyori:adventure-platform-bukkit:4.1.1"
+    implementation "org.bstats:bstats-bukkit:3.0.0"
 
     // Annotations
     compileOnly project(":magma-annotations:magma-annotations-bukkit-platform")
@@ -37,4 +38,7 @@ shadowJar {
     dependencies {
         exclude(dependency('com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'))
     }
+
+    relocate 'org.bstats', 'de.jalumu.magma.platform.bukkit.bstats'
+
 }

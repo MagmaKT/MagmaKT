@@ -10,6 +10,7 @@ import de.jalumu.magma.platform.base.text.NotificationProvider;
 import de.jalumu.magma.platform.paper.module.BukkitModuleLoader;
 import de.jalumu.magma.platform.paper.text.BukkitNotificationProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -40,6 +41,8 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
     @Override
     public void onEnable() {
+
+        Metrics metrics = new Metrics(this,16417);
 
         this.adventure = BukkitAudiences.create(this);
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
