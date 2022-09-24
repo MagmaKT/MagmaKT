@@ -15,9 +15,9 @@ public class BukkitNotificationProvider extends NotificationProvider {
     private MagmaPaperBootstrap magma;
     private YamlConfiguration configuration;
 
-    public BukkitNotificationProvider(MagmaPaperBootstrap magma){
+    public BukkitNotificationProvider(MagmaPaperBootstrap magma) {
         this.magma = magma;
-        File config = new File(magma.getDataFolder(),"notification.yml");
+        File config = new File(magma.getDataFolder(), "notification.yml");
         configuration = new YamlConfiguration();
 
         if (!config.exists()) {
@@ -36,20 +36,20 @@ public class BukkitNotificationProvider extends NotificationProvider {
             e.printStackTrace();
         }
 
-        configuration.addDefault("notification.global.debug.template","<dark_aqua>DEBUG <dark_gray>| <gray><notification_text>");
-        configuration.addDefault("notification.global.debug.sound", Sound.UI_BUTTON_CLICK.key().value());
+        configuration.addDefault("notification.global.debug.template", "<dark_aqua>DEBUG <dark_gray>| <gray><notification_text>");
+        configuration.addDefault("notification.global.debug.sound", Sound.UI_BUTTON_CLICK.key().asString());
 
-        configuration.addDefault("notification.global.info.template","<green>INFO <dark_gray>| <dark_green><notification_text>");
-        configuration.addDefault("notification.global.info.sound", Sound.BLOCK_NOTE_BLOCK_CHIME.key().value());
+        configuration.addDefault("notification.global.info.template", "<green>INFO <dark_gray>| <dark_green><notification_text>");
+        configuration.addDefault("notification.global.info.sound", Sound.BLOCK_NOTE_BLOCK_CHIME.key().asString());
 
-        configuration.addDefault("notification.global.success.template","<green>SUCCESS <dark_gray>| <green><notification_text>");
-        configuration.addDefault("notification.global.success.sound",org.bukkit.Sound.ENTITY_PLAYER_LEVELUP.key().value());
+        configuration.addDefault("notification.global.success.template", "<green>SUCCESS <dark_gray>| <green><notification_text>");
+        configuration.addDefault("notification.global.success.sound", org.bukkit.Sound.ENTITY_PLAYER_LEVELUP.key().asString());
 
-        configuration.addDefault("notification.global.warning.template","<yellow>WARNING <dark_gray>| <green><notification_text>");
-        configuration.addDefault("notification.global.warning.sound", Sound.BLOCK_NOTE_BLOCK_BASS.key().value());
+        configuration.addDefault("notification.global.warning.template", "<yellow>WARNING <dark_gray>| <green><notification_text>");
+        configuration.addDefault("notification.global.warning.sound", Sound.BLOCK_NOTE_BLOCK_BASS.key().asString());
 
-        configuration.addDefault("notification.global.error.template","<red>Error <dark_gray>| <green><notification_text>");
-        configuration.addDefault("notification.global.error.sound", Sound.ITEM_SHIELD_BREAK.key().value());
+        configuration.addDefault("notification.global.error.template", "<red>Error <dark_gray>| <green><notification_text>");
+        configuration.addDefault("notification.global.error.sound", Sound.ITEM_SHIELD_BREAK.key().asString());
 
         configuration.options().copyDefaults(true);
 
@@ -62,26 +62,53 @@ public class BukkitNotificationProvider extends NotificationProvider {
 
     @Override
     protected Notification getDebug() {
-       return new BukkitNotification();
+        String template = configuration.getString("notification.global.debug.template");
+        String sound = configuration.getString("notification.global.debug.sound");
+        System.err.println(template);
+        System.err.println(sound);
+        BukkitNotification notification = new BukkitNotification();
+        notification.setNotificationTemplate(template);
+        notification.setDefaultSound(sound);
+        return notification;
     }
 
     @Override
     protected Notification getInfo() {
-        return new BukkitNotification();
+        String template = configuration.getString("notification.global.info.template");
+        String sound = configuration.getString("notification.global.info.sound");
+        BukkitNotification notification = new BukkitNotification();
+        notification.setNotificationTemplate(template);
+        notification.setDefaultSound(sound);
+        return notification;
     }
 
     @Override
     protected Notification getSuccess() {
-        return new BukkitNotification();
+        String template = configuration.getString("notification.global.success.template");
+        String sound = configuration.getString("notification.global.success.sound");
+        BukkitNotification notification = new BukkitNotification();
+        notification.setNotificationTemplate(template);
+        notification.setDefaultSound(sound);
+        return notification;
     }
 
     @Override
     protected Notification getWarning() {
-        return new BukkitNotification();
+        String template = configuration.getString("notification.global.warning.template");
+        String sound = configuration.getString("notification.global.warning.sound");
+        BukkitNotification notification = new BukkitNotification();
+        notification.setNotificationTemplate(template);
+        notification.setDefaultSound(sound);
+        return notification;
     }
 
     @Override
     protected Notification getError() {
-        return new BukkitNotification();
+        String template = configuration.getString("notification.global.error.template");
+        String sound = configuration.getString("notification.global.error.sound");
+        BukkitNotification notification = new BukkitNotification();
+        notification.setNotificationTemplate(template);
+        notification.setDefaultSound(sound);
+        return notification;
     }
 }

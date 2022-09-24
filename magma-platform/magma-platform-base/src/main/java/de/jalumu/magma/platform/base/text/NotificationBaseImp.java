@@ -10,7 +10,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 public abstract class NotificationBaseImp implements Notification{
 
     private Component text;
-    private Sound sound = getDefaultSound();
+    private Sound sound;
 
     @Override
     public Component getNotificationText() {
@@ -51,7 +51,11 @@ public abstract class NotificationBaseImp implements Notification{
     public void send(Audience audience) {
         Component parsed = MiniMessage.miniMessage().deserialize(getNotificationTemplate(), Placeholder.component("notification_text", text));
         audience.sendMessage(parsed);
-        audience.playSound(sound);
+        if (sound != null){
+            audience.playSound(sound);
+        }else{
+            audience.playSound(getDefaultSound());
+        }
     }
 
 }
