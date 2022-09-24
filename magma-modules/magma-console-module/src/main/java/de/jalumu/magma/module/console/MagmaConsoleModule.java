@@ -24,7 +24,7 @@ public class MagmaConsoleModule implements MagmaModule {
     @Override
     public void onEnable() {
         platform.getLogger().info("Enable");
-        Bukkit.getPluginManager().registerEvents(new ChatEvents(), (Plugin) platform.getMagmaPluginInstance());
+        Bukkit.getPluginManager().registerEvents(new ChatEvents(this), (Plugin) platform.getMagmaPluginInstance());
     }
 
     @Override
