@@ -12,11 +12,15 @@ repositories {
     mavenCentral()
 }
 
-subprojects {
+allprojects {
     repositories {
         maven {
             name = "jalumu-repo"
             url = "https://repo.jalumu.dev/repository/maven-public/"
+        }
+        maven {
+            name = 'jitpack'
+            url = 'https://jitpack.io'
         }
     }
 }
@@ -29,6 +33,10 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+shadowJar {
+    relocate 'org.bstats', 'de.jalumu.magma.platform.bukkit.bstats'
 }
 
 test {

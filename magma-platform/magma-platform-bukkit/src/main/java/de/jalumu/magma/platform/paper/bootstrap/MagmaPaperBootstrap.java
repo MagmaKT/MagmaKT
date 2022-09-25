@@ -2,6 +2,7 @@ package de.jalumu.magma.platform.paper.bootstrap;
 
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
 import de.jalumu.magma.module.console.MagmaConsoleModule;
+import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
@@ -16,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.IOException;
 import java.nio.file.Files;
 
-@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {})
+@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"Vault","LuckPerms"})
 public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
@@ -49,9 +50,11 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaConsoleModule());
+        moduleLoader.registerModule(new MagmaTablistModule());
 
         SplashScreen.splashScreen(this);
         moduleLoader.enableModule("Magma-Console");
+        moduleLoader.enableModule("Magma-Tablist");
 
     }
 

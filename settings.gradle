@@ -24,4 +24,6 @@ findProject(':magma-annotations:magma-annotations-bungee-platform')?.name = 'mag
 include 'magma-modules'
 include 'magma-modules:magma-console-module'
 findProject(':magma-modules:magma-console-module')?.name = 'magma-console-module'
+include 'magma-modules:magma-tablist-module'
+findProject(':magma-modules:magma-tablist-module')?.name = 'magma-tablist-module'
 
