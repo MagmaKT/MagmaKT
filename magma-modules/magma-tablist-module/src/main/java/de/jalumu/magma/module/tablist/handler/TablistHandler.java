@@ -25,10 +25,7 @@ public class TablistHandler {
 
     public static void updateTablist() {
         LuckPerms api = LuckPermsProvider.get();
-
-        //Scoreboard board = player.getScoreboard();
-
-
+        
         List<Player> sortedPlayers = new ArrayList<>();
 
         Bukkit.getOnlinePlayers().stream()
