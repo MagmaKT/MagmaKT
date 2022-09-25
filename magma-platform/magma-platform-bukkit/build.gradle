@@ -16,6 +16,11 @@ repositories {
         url = 'https://papermc.io/repo/repository/maven-public/'
     }
 
+    maven {
+        name = 'jitpack'
+        url = 'https://jitpack.io'
+    }
+
 }
 
 dependencies {
@@ -23,10 +28,12 @@ dependencies {
     api project(":magma-platform:magma-platform-base")
 
     implementation project(":magma-modules:magma-console-module")
+    implementation project(":magma-modules:magma-tablist-module")
 
     // External dependencies
     implementation "net.kyori:adventure-platform-bukkit:4.1.1"
     implementation "org.bstats:bstats-bukkit:3.0.0"
+    compileOnly "com.github.MilkBowl:VaultAPI:1.7"
 
     // Annotations
     compileOnly project(":magma-annotations:magma-annotations-bukkit-platform")
