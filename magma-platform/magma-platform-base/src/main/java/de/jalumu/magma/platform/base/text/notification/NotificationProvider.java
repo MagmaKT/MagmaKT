@@ -1,4 +1,4 @@
-package de.jalumu.magma.platform.base.text;
+package de.jalumu.magma.platform.base.text.notification;
 
 public abstract class NotificationProvider {
 

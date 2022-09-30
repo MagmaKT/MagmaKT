@@ -1,10 +1,16 @@
 package de.jalumu.magma.module.tablist.handler;
 
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
+import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
@@ -15,17 +21,17 @@ public class TablistHandler {
 
     private static HashMap<String, String> map = new HashMap<>();
 
-    public static void init(MagmaTablistModule module, Player player) {
+    private static YamlConfiguration configuration;
+    private static MagmaTablistModule magma;
 
-
-        LuckPerms api = LuckPermsProvider.get();
-
-
+    public static void init(MagmaTablistModule magmaTablistModule, YamlConfiguration yml) {
+        configuration = yml;
+        magma = magmaTablistModule;
     }
 
     public static void updateTablist() {
         LuckPerms api = LuckPermsProvider.get();
-        
+
         List<Player> sortedPlayers = new ArrayList<>();
 
         Bukkit.getOnlinePlayers().stream()
@@ -33,6 +39,7 @@ public class TablistHandler {
                 .forEach(sortedPlayers::add);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
+
             Scoreboard board = player.getScoreboard();
             int i = 0;
             for (Player sorted : sortedPlayers) {
@@ -40,13 +47,21 @@ public class TablistHandler {
                 if (team == null) {
                     team = board.registerNewTeam(i + sorted.getName());
                 }
-                team.prefix(MiniMessage.miniMessage().deserialize(Objects.requireNonNull(api.getPlayerAdapter(Player.class).getUser(sorted).getCachedData().getMetaData().getPrefix()) + " <dark_gray>| <reset>"));
+                team.prefix(MiniMessage.miniMessage().deserialize(Objects.requireNonNull(api.getPlayerAdapter(Player.class).getUser(sorted).getCachedData().getMetaData().getPrefix()) + " <dark_gray>┃ <reset>"));
                 team.addPlayer(sorted);
                 System.out.println(team.getPrefix());
                 i++;
             }
         }
 
+    }
+
+    public static void updateDecoration(){
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            Audience audience = player;
+            MiniMessage mm = MiniMessage.miniMessage();
+            audience.sendPlayerListHeaderAndFooter(mm.deserialize(configuration.getString("tablist.decoration.header"), Placeholders.player(player.getUniqueId())), mm.deserialize(configuration.getString("tablist.decoration.footer"), Placeholders.player(player.getUniqueId())));
+        }
     }
 
 }

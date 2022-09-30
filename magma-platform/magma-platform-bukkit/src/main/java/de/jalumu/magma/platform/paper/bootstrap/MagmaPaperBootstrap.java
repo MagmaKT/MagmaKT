@@ -7,25 +7,31 @@ import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
-import de.jalumu.magma.platform.base.text.NotificationProvider;
+import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
+import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.platform.paper.module.BukkitModuleLoader;
 import de.jalumu.magma.platform.paper.text.BukkitNotificationProvider;
+import de.jalumu.magma.platform.paper.text.placeholder.BukkitPlaceholderProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.nio.file.Files;
 
-@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"Vault","LuckPerms"})
+@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"Vault", "LuckPerms"})
 public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
 
     private ModuleLoader moduleLoader;
 
+    private Permission perms = null;
+
     public BukkitAudiences adventure() {
-        if(this.adventure == null) {
+        if (this.adventure == null) {
             throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
         }
         return this.adventure;
@@ -42,11 +48,13 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
     @Override
     public void onEnable() {
+        Metrics metrics = new Metrics(this, 16417);
 
-        Metrics metrics = new Metrics(this,16417);
+        setupPermissions();
 
         this.adventure = BukkitAudiences.create(this);
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
+        PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
 
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaConsoleModule());
@@ -60,7 +68,7 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
 
     @Override
     public void onDisable() {
-        if(this.adventure != null) {
+        if (this.adventure != null) {
             this.adventure.close();
             this.adventure = null;
         }
@@ -97,4 +105,13 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
     }
 
 
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
+    }
+
+    public Permission getPerms() {
+        return perms;
+    }
 }
