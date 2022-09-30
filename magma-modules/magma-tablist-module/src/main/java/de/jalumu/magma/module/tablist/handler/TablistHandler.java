@@ -3,6 +3,7 @@ package de.jalumu.magma.module.tablist.handler;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -44,7 +45,8 @@ public class TablistHandler {
                 if (team == null) {
                     team = board.registerNewTeam(i + sorted.getName());
                 }
-                team.prefix(MiniMessage.miniMessage().deserialize(Objects.requireNonNull(api.getPlayerAdapter(Player.class).getUser(sorted).getCachedData().getMetaData().getPrefix()) + " <dark_gray>┃ <reset>"));
+                Component prefix = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.prefix"), Placeholders.player(sorted.getUniqueId()));
+                team.prefix(prefix);
                 team.addPlayer(sorted);
                 System.out.println(team.getPrefix());
                 i++;
@@ -53,7 +55,7 @@ public class TablistHandler {
 
     }
 
-    public static void updateDecoration(){
+    public static void updateDecoration() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             Audience audience = player;
             MiniMessage mm = MiniMessage.miniMessage();
