@@ -1,18 +1,15 @@
 package de.jalumu.magma.platform.paper.text.placeholder;
 
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
-import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
 import de.jalumu.magma.platform.paper.bootstrap.MagmaPaperBootstrap;
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class BukkitPlaceholderProvider extends PlaceholderProvider {
@@ -35,11 +32,24 @@ public class BukkitPlaceholderProvider extends PlaceholderProvider {
         Player player = Bukkit.getPlayer(uuid);
         return TagResolver.builder()
                 .resolver(getGlobal())
-                .resolver(Placeholder.parsed("bungee_player_online", PlaceholderAPI.setPlaceholders(player,"%bungee_total%")))
+                .resolver(Placeholder.parsed("bungee_player_online", PlaceholderAPI.setPlaceholders(player, "%bungee_total%")))
                 .resolver(Placeholder.parsed("player_name", player.getName()))
                 .resolver(Placeholder.parsed("player_uuid", uuid.toString()))
                 .resolver(Placeholder.parsed("rank_displayname", magma.getPerms().getPrimaryGroup(player)))
+                .resolver(Placeholder.parsed("player_prefix", getPlayerPrefix(player)))
+                .resolver(Placeholder.parsed("player_first_prefix_color", getPlayerPrefixColor(player)))
                 .build();
+    }
+
+    private String getPlayerPrefix(Player player) {
+        LuckPerms api = LuckPermsProvider.get();
+        return api.getPlayerAdapter(Player.class).getUser(player).getCachedData().getMetaData().getPrefix();
+    }
+
+    private String getPlayerPrefixColor(Player player) {
+        String prefix = getPlayerPrefix(player);
+        String[] split = prefix.split(">");
+        return split[0] + ">";
     }
 
 }

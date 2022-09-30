@@ -4,11 +4,13 @@ import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.module.tablist.handler.TablistHandler;
 import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -47,6 +49,11 @@ public class ConnectionEvents implements Listener {
         configuration.addDefault("tablist.decoration.header", "<gold>Servername.net<newline><newline><gold>%server_name%<newline><red>Player<gray>:%server_online%<newline>");
         configuration.addDefault("tablist.decoration.footer", "<newline><red>Teamspeak<gray>: <gold>ts.servername.net<newline><dark_purple>Discord<gray>: <gold>discord.servername.net<newline>");
 
+        configuration.addDefault("tablist.player.prefix", "<player_prefix> <dark_gray>| ");
+        configuration.addDefault("tablist.player.displayname", "<player_first_prefix_color><player_name>");
+        configuration.addDefault("tablist.player.listName", "<player_prefix> <dark_gray>| <player_first_prefix_color><player_name>");
+
+
         configuration.options().copyDefaults(true);
 
         try {
@@ -57,8 +64,11 @@ public class ConnectionEvents implements Listener {
         TablistHandler.init(magmaTablistModule, configuration);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
+        Component name = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.listName"), Placeholders.player(event.getPlayer().getUniqueId()));
+        event.getPlayer().sendMessage(name);
+        event.getPlayer().playerListName(name);
         TablistHandler.updateTablist();
     }
 

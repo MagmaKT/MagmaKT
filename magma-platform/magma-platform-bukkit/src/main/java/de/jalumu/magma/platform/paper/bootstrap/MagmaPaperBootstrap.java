@@ -61,7 +61,7 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
         moduleLoader.registerModule(new MagmaTablistModule());
 
         SplashScreen.splashScreen(this);
-        moduleLoader.enableModule("Magma-Console");
+        //moduleLoader.enableModule("Magma-Console");
         moduleLoader.enableModule("Magma-Tablist");
 
     }
