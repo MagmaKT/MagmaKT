@@ -1,6 +1,6 @@
 package de.jalumu.magma.platform.paper.text;
 
-import de.jalumu.magma.platform.base.text.NotificationBaseImp;
+import de.jalumu.magma.platform.base.text.notification.NotificationBaseImp;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 

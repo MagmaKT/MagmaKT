@@ -22,6 +22,10 @@ allprojects {
             name = 'jitpack'
             url = 'https://jitpack.io'
         }
+        maven {
+            name = 'papi'
+            url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        }
     }
 }
 

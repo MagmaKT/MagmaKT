@@ -32,6 +32,11 @@ public class MagmaTablistModule implements MagmaModule {
         setupPermissions();
         //TablistHandler.init(this);
         Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) platform.getMagmaPluginInstance());
+
+        Bukkit.getScheduler().runTaskTimer(getBukkit(),bukkitTask -> {
+            TablistHandler.updateDecoration();
+        },5,20);
+
     }
 
     @Override

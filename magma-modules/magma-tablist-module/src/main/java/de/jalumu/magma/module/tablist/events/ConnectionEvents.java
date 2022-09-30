@@ -2,6 +2,7 @@ package de.jalumu.magma.module.tablist.events;
 
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.module.tablist.handler.TablistHandler;
+import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -10,6 +11,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,17 +54,16 @@ public class ConnectionEvents implements Listener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        TablistHandler.init(magmaTablistModule, configuration);
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
-        Audience audience = event.getPlayer();
-        MiniMessage mm = MiniMessage.miniMessage();
-        audience.sendPlayerListHeaderAndFooter(mm.deserialize(configuration.getString("tablist.decoration.header")),mm.deserialize(configuration.getString("tablist.decoration.footer")));
-
-        TablistHandler.init(module, event.getPlayer());
+    public void onJoin(PlayerJoinEvent event) {
         TablistHandler.updateTablist();
+    }
 
+    public void onQuit(PlayerQuitEvent event) {
+        TablistHandler.updateTablist();
     }
 
 }
