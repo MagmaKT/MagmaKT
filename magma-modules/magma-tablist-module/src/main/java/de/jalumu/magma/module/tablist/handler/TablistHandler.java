@@ -48,6 +48,7 @@ public class TablistHandler {
                 Component prefix = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.prefix"), Placeholders.player(sorted.getUniqueId()));
                 team.prefix(prefix);
                 team.addPlayer(sorted);
+                team.addEntry(sorted.getDisplayName());
                 System.out.println(team.getPrefix());
                 i++;
             }

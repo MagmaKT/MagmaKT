@@ -36,6 +36,7 @@ dependencies {
     compileOnly "com.github.MilkBowl:VaultAPI:1.7"
     compileOnly 'net.luckperms:api:5.4'
     compileOnly 'me.clip:placeholderapi:2.11.2'
+    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.8.0";
 
     // Annotations
     compileOnly project(":magma-annotations:magma-annotations-bukkit-platform")

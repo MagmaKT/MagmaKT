@@ -3,10 +3,9 @@ package de.jalumu.magma.module.tablist.events;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.module.tablist.handler.TablistHandler;
 import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
@@ -49,7 +48,7 @@ public class ConnectionEvents implements Listener {
         configuration.addDefault("tablist.decoration.header", "<gold>Servername.net<newline><newline><gold>%server_name%<newline><red>Player<gray>:%server_online%<newline>");
         configuration.addDefault("tablist.decoration.footer", "<newline><red>Teamspeak<gray>: <gold>ts.servername.net<newline><dark_purple>Discord<gray>: <gold>discord.servername.net<newline>");
 
-        configuration.addDefault("tablist.player.prefix", "<player_prefix> <dark_gray>| ");
+        configuration.addDefault("tablist.player.prefix", "<player_prefix> <dark_gray>| <player_first_prefix_color>");
         configuration.addDefault("tablist.player.displayname", "<player_first_prefix_color><player_name>");
         configuration.addDefault("tablist.player.listName", "<player_prefix> <dark_gray>| <player_first_prefix_color><player_name>");
 
@@ -66,9 +65,17 @@ public class ConnectionEvents implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
-        Component name = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.listName"), Placeholders.player(event.getPlayer().getUniqueId()));
-        event.getPlayer().sendMessage(name);
-        event.getPlayer().playerListName(name);
+        Component tablistName = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.listName"), Placeholders.player(event.getPlayer().getUniqueId()));
+        Component displayname = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.displayname"), Placeholders.player(event.getPlayer().getUniqueId()));
+        event.getPlayer().playerListName(tablistName);
+        event.getPlayer().displayName(displayname);
+        event.getPlayer().customName(displayname);
+        event.getPlayer().setCustomNameVisible(true);
+
+        if (event.getPlayer().getName().length() < 14) {
+            module.getNameChanger().changeName(event.getPlayer(), LegacyComponentSerializer.builder().character(LegacyComponentSerializer.SECTION_CHAR).build().serialize(displayname));
+        }
+
         TablistHandler.updateTablist();
     }
 
