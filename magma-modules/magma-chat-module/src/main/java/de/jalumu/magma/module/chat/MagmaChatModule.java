@@ -6,6 +6,7 @@ import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class MagmaChatModule implements MagmaModule {
 
@@ -50,4 +51,9 @@ public class MagmaChatModule implements MagmaModule {
         }
         return false;
     }
+
+    public JavaPlugin getBukkit() {
+        return (JavaPlugin) getPlatform();
+    }
+
 }
