@@ -3,10 +3,9 @@ package de.jalumu.magma.module.tablist.events;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.module.tablist.handler.TablistHandler;
 import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
@@ -72,6 +71,11 @@ public class ConnectionEvents implements Listener {
         event.getPlayer().displayName(displayname);
         event.getPlayer().customName(displayname);
         event.getPlayer().setCustomNameVisible(true);
+
+        if (event.getPlayer().getName().length() < 14) {
+            module.getNameChanger().changeName(event.getPlayer(), LegacyComponentSerializer.builder().character(LegacyComponentSerializer.SECTION_CHAR).build().serialize(displayname));
+        }
+
         TablistHandler.updateTablist();
     }
 

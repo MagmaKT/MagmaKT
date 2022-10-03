@@ -2,6 +2,7 @@ package de.jalumu.magma.module.tablist;
 
 import de.jalumu.magma.module.tablist.events.ConnectionEvents;
 import de.jalumu.magma.module.tablist.handler.TablistHandler;
+import de.jalumu.magma.module.tablist.util.NameChanger;
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
@@ -17,6 +18,8 @@ public class MagmaTablistModule implements MagmaModule {
 
     private Permission perms = null;
 
+    private NameChanger nameChanger;
+
     @Override
     public String getName() {
         return "Magma-Tablist";
@@ -31,6 +34,10 @@ public class MagmaTablistModule implements MagmaModule {
     public void onEnable() {
         setupPermissions();
         //TablistHandler.init(this);
+
+        nameChanger = new NameChanger(getBukkit());
+
+
         Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) platform.getMagmaPluginInstance());
 
         Bukkit.getScheduler().runTaskTimer(getBukkit(),bukkitTask -> {
@@ -75,5 +82,9 @@ public class MagmaTablistModule implements MagmaModule {
 
     public Permission getPerms() {
         return perms;
+    }
+
+    public NameChanger getNameChanger() {
+        return nameChanger;
     }
 }
