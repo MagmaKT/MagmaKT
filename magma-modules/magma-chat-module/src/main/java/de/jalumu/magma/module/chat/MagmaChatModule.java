@@ -1,40 +1,41 @@
-package de.jalumu.magma.module.console;
+package de.jalumu.magma.module.chat;
 
-import de.jalumu.magma.module.console.events.ChatEvents;
+import de.jalumu.magma.module.chat.events.ChatEvents;
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class MagmaConsoleModule implements MagmaModule {
+public class MagmaChatModule implements MagmaModule {
 
     private MagmaPlatform platform;
 
     @Override
     public String getName() {
-        return "Magma-Console";
+        return "Magma-Chat";
     }
 
     @Override
     public void onLoad() {
-        platform.getLogger().info("Load");
+       // platform.getLogger().info("Load");
     }
 
     @Override
     public void onEnable() {
-        platform.getLogger().info("Enable");
+        //platform.getLogger().info("Enable");
         Bukkit.getPluginManager().registerEvents(new ChatEvents(this), (Plugin) platform.getMagmaPluginInstance());
     }
 
     @Override
     public void onDisable() {
-        platform.getLogger().info("Disable");
+        //platform.getLogger().info("Disable");
     }
 
     @Override
     public void onUnload() {
-        platform.getLogger().info("Unload");
+        //platform.getLogger().info("Unload");
     }
 
     @Override
@@ -50,4 +51,9 @@ public class MagmaConsoleModule implements MagmaModule {
         }
         return false;
     }
+
+    public JavaPlugin getBukkit() {
+        return (JavaPlugin) getPlatform();
+    }
+
 }

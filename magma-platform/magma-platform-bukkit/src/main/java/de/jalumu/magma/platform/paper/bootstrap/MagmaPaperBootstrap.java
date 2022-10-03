@@ -1,7 +1,7 @@
 package de.jalumu.magma.platform.paper.bootstrap;
 
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
-import de.jalumu.magma.module.console.MagmaConsoleModule;
+import de.jalumu.magma.module.chat.MagmaChatModule;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
@@ -57,11 +57,11 @@ public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
         PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
 
         moduleLoader = new BukkitModuleLoader(this);
-        moduleLoader.registerModule(new MagmaConsoleModule());
+        moduleLoader.registerModule(new MagmaChatModule());
         moduleLoader.registerModule(new MagmaTablistModule());
 
         SplashScreen.splashScreen(this);
-        //moduleLoader.enableModule("Magma-Console");
+        moduleLoader.enableModule("Magma-Chat");
         moduleLoader.enableModule("Magma-Tablist");
 
     }
