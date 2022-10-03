@@ -37,12 +37,11 @@ public class MagmaTablistModule implements MagmaModule {
 
         nameChanger = new NameChanger(getBukkit());
 
-
         Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) platform.getMagmaPluginInstance());
 
-        Bukkit.getScheduler().runTaskTimer(getBukkit(),bukkitTask -> {
+        Bukkit.getScheduler().runTaskTimer(getBukkit(), bukkitTask -> {
             TablistHandler.updateDecoration();
-        },5,20);
+        }, 5, 20);
 
     }
 
@@ -70,7 +69,7 @@ public class MagmaTablistModule implements MagmaModule {
         return false;
     }
 
-    public JavaPlugin getBukkit(){
+    public JavaPlugin getBukkit() {
         return (JavaPlugin) getPlatform();
     }
 
