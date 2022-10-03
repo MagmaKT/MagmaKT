@@ -18,23 +18,23 @@ public class MagmaChatModule implements MagmaModule {
 
     @Override
     public void onLoad() {
-        platform.getLogger().info("Load");
+       // platform.getLogger().info("Load");
     }
 
     @Override
     public void onEnable() {
-        platform.getLogger().info("Enable");
+        //platform.getLogger().info("Enable");
         Bukkit.getPluginManager().registerEvents(new ChatEvents(this), (Plugin) platform.getMagmaPluginInstance());
     }
 
     @Override
     public void onDisable() {
-        platform.getLogger().info("Disable");
+        //platform.getLogger().info("Disable");
     }
 
     @Override
     public void onUnload() {
-        platform.getLogger().info("Unload");
+        //platform.getLogger().info("Unload");
     }
 
     @Override
