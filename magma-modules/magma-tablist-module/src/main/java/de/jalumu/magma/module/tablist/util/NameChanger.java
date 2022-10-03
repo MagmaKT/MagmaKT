@@ -1,4 +1,4 @@
-/*
+package de.jalumu.magma.module.tablist.util;/*
  * The MIT License
  * Copyright (c) 2015 Techcable
  *
@@ -20,8 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import java.util.Map;
-import java.util.WeakHashMap;
+
+import java.util.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -34,6 +34,7 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.EnumWrappers.PlayerInfoAction;
 import com.comphenix.protocol.wrappers.PlayerInfoData;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * This class allows you to change a player's nametag
@@ -47,9 +48,10 @@ import com.comphenix.protocol.wrappers.WrappedGameProfile;
 public class NameChanger {
     private final Map<Player, String> fakeNames = new WeakHashMap<Player, String>();
     private final Plugin plugin;
+
     public NameChanger(Plugin plugin) {
         this.plugin = plugin;
-        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(this, PacketType.Play.Server.PLAYER_INFO) {
+        ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(plugin, PacketType.Play.Server.PLAYER_INFO) {
             @Override
             public void onPacketSending(PacketEvent event) {
                 if (event.getPacket().getPlayerInfoAction().read(0) != PlayerInfoAction.ADD_PLAYER) return;
@@ -81,7 +83,8 @@ public class NameChanger {
      * <br>
      * The player may disappear for approximately 2 ticks after you change it
      * </br>
-     * @param player player whos name to change
+     *
+     * @param player   player whos name to change
      * @param fakeName the player's new name
      */
     public void changeName(final Player player, String fakeName) {
@@ -94,9 +97,10 @@ public class NameChanger {
      * <br>
      * The player may disappear for approximately 2 ticks after you change it
      * </br>
+     *
      * @param player player whos name to change back to the original value
      */
-    public void changeName(Player player, String fakeName) {
+    public void resetName(Player player, String fakeName) {
         if (!fakeNames.containsKey(player))
             fakeNames.remove(player);
         refresh(player);
