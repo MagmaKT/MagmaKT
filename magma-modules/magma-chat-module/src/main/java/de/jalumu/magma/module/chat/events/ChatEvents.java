@@ -1,4 +1,4 @@
-package de.jalumu.magma.module.console.events;
+package de.jalumu.magma.module.chat.events;
 
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import org.bukkit.event.EventHandler;
