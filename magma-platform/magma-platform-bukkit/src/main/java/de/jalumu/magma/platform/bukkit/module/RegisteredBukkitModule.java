@@ -10,17 +10,27 @@ import java.util.Map;
 public class RegisteredBukkitModule implements ConfigurationSerializable {
 
     private MagmaModule module;
+    private String name;
+    private String clazz;
 
     public RegisteredBukkitModule(MagmaModule module) {
         this.module = module;
     }
 
+    public RegisteredBukkitModule(Map<String, Object> map) {
+        name = map.get("name").toString();
+        clazz = map.get("class").toString();
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public Map<String, Object> serialize() {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("name", module.getName());
-        map.put("class", module.getClass().getName());
+        map.put("name", name);
+        map.put("class", clazz);
         return map;
     }
 }

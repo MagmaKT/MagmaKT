@@ -9,10 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class BukkitModuleLoader implements ModuleLoader {
 
@@ -125,5 +122,23 @@ public class BukkitModuleLoader implements ModuleLoader {
     @Override
     public MagmaModule getModule(String name) {
         return modules.get(name);
+    }
+
+    public void autoLoad() {
+        for (RegisteredBukkitModule module : (List<RegisteredBukkitModule>) Objects.requireNonNull(configuration.getList("modules.registered"))) {
+            if (configuration.contains("modules.enabled." + module.getName())) {
+                if (configuration.getBoolean("modules.enabled." + module.getName())) {
+                    enableModule(module.getName());
+                }
+            } else {
+                configuration.set("modules.enabled." + module.getName(), true);
+                try {
+                    configuration.save(config);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 }

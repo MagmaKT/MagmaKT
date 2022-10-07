@@ -30,7 +30,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
 
-    private ModuleLoader moduleLoader;
+    private BukkitModuleLoader moduleLoader;
 
     private Permission perms = null;
 
@@ -67,8 +67,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         moduleLoader.registerModule(new MagmaTablistModule(this, new File(this.getDataFolder(), "modules/tablist")));
 
         SplashScreen.splashScreen(this);
-        moduleLoader.enableModule("Magma-Chat");
-        moduleLoader.enableModule("Magma-Tablist");
+        moduleLoader.autoLoad();
 
     }
 
