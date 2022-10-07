@@ -2,19 +2,18 @@ package de.jalumu.magma.platform.bukkit.module;
 
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegisteredBukkitModule implements ConfigurationSerializable {
 
-    private MagmaModule module;
     private String name;
     private String clazz;
 
     public RegisteredBukkitModule(MagmaModule module) {
-        this.module = module;
+        name = module.getName();
+        clazz = module.getClass().getName();
     }
 
     public RegisteredBukkitModule(Map<String, Object> map) {

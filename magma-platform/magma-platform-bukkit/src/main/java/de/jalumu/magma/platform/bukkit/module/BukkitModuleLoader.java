@@ -59,8 +59,9 @@ public class BukkitModuleLoader implements ModuleLoader {
     public void registerModule(MagmaModule module) {
         if (module.isCompatible()) {
             RegisteredBukkitModule bukkitModule = new RegisteredBukkitModule(module);
-            if (!configuration.getList("modules.registered").contains(bukkitModule)) {
+            if (Objects.requireNonNull(configuration.getList("modules.registered")).stream().noneMatch(o -> ((RegisteredBukkitModule) o).getName().equals(bukkitModule.getName()))) {
                 List<RegisteredBukkitModule> registered = (List<RegisteredBukkitModule>) configuration.getList("modules.registered");
+                assert registered != null;
                 registered.add(bukkitModule);
                 configuration.set("modules.registered", registered);
                 try {
