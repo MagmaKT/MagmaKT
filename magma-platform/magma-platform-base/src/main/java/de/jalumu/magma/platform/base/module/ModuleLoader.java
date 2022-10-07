@@ -17,5 +17,7 @@ public interface ModuleLoader {
     void disableModule(MagmaModule module);
     void disableModule(String name);
 
+    MagmaModule getModule(String name);
+
 
 }

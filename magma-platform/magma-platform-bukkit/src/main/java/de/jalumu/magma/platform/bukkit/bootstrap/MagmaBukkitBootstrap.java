@@ -10,11 +10,13 @@ import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
+import de.jalumu.magma.platform.bukkit.module.RegisteredBukkitModule;
 import de.jalumu.magma.platform.bukkit.text.BukkitNotificationProvider;
 import de.jalumu.magma.platform.bukkit.text.placeholder.BukkitPlaceholderProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -56,6 +58,8 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         this.adventure = BukkitAudiences.create(this);
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
         PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
+
+        ConfigurationSerialization.registerClass(RegisteredBukkitModule.class);
 
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaChatModule(this, new File(this.getDataFolder(), "modules/chat")));
