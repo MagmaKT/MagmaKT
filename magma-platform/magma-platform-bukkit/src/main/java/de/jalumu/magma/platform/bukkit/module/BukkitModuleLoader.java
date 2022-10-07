@@ -1,6 +1,5 @@
 package de.jalumu.magma.platform.bukkit.module;
 
-import de.jalumu.magma.module.chat.MagmaChatModule;
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
@@ -9,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,7 +31,6 @@ public class BukkitModuleLoader implements ModuleLoader {
 
         if (!config.exists()) {
             try {
-                config.mkdir();
                 config.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();

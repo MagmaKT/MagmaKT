@@ -23,6 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {"ProtocolLib"}, softDependsPlugin = {"Vault", "LuckPerms"})
 public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
@@ -43,7 +44,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public void onLoad() {
         try {
-            Files.createDirectories(this.getDataFolder().toPath());
+            Files.createDirectories(Paths.get(this.getDataFolder().toPath() + File.separator + "modules"));
         } catch (IOException e) {
             e.printStackTrace();
         }
