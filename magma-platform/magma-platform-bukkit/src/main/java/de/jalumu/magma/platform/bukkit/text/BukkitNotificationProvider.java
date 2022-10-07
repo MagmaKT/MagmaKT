@@ -1,8 +1,8 @@
-package de.jalumu.magma.platform.paper.text;
+package de.jalumu.magma.platform.bukkit.text;
 
 import de.jalumu.magma.platform.base.text.notification.Notification;
 import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
-import de.jalumu.magma.platform.paper.bootstrap.MagmaPaperBootstrap;
+import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
 import org.bukkit.Sound;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,10 +12,10 @@ import java.io.IOException;
 
 public class BukkitNotificationProvider extends NotificationProvider {
 
-    private MagmaPaperBootstrap magma;
+    private MagmaBukkitBootstrap magma;
     private YamlConfiguration configuration;
 
-    public BukkitNotificationProvider(MagmaPaperBootstrap magma) {
+    public BukkitNotificationProvider(MagmaBukkitBootstrap magma) {
         this.magma = magma;
         File config = new File(magma.getDataFolder(), "notification.yml");
         configuration = new YamlConfiguration();

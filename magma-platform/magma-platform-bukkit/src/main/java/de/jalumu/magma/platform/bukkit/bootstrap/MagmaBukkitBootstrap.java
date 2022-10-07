@@ -1,4 +1,4 @@
-package de.jalumu.magma.platform.paper.bootstrap;
+package de.jalumu.magma.platform.bukkit.bootstrap;
 
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
 import de.jalumu.magma.module.chat.MagmaChatModule;
@@ -9,9 +9,9 @@ import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
-import de.jalumu.magma.platform.paper.module.BukkitModuleLoader;
-import de.jalumu.magma.platform.paper.text.BukkitNotificationProvider;
-import de.jalumu.magma.platform.paper.text.placeholder.BukkitPlaceholderProvider;
+import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
+import de.jalumu.magma.platform.bukkit.text.BukkitNotificationProvider;
+import de.jalumu.magma.platform.bukkit.text.placeholder.BukkitPlaceholderProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 @BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {"ProtocolLib"},softDependsPlugin = {"Vault", "LuckPerms"})
-public class MagmaPaperBootstrap extends JavaPlugin implements MagmaPlatform {
+public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
 

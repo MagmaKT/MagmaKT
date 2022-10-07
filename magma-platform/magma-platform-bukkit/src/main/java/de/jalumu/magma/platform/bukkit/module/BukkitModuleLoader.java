@@ -1,19 +1,19 @@
-package de.jalumu.magma.platform.paper.module;
+package de.jalumu.magma.platform.bukkit.module;
 
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
-import de.jalumu.magma.platform.paper.bootstrap.MagmaPaperBootstrap;
+import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
 
 import java.util.Collection;
 import java.util.HashMap;
 
 public class BukkitModuleLoader implements ModuleLoader {
 
-    private MagmaPaperBootstrap paperBootstrap;
+    private MagmaBukkitBootstrap paperBootstrap;
 
     private HashMap<String, MagmaModule> modules = new HashMap<>();
 
-    public BukkitModuleLoader(MagmaPaperBootstrap paperBootstrap) {
+    public BukkitModuleLoader(MagmaBukkitBootstrap paperBootstrap) {
         this.paperBootstrap = paperBootstrap;
     }
 
