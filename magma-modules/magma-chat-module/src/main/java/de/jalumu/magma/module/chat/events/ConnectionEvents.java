@@ -1,33 +1,29 @@
 package de.jalumu.magma.module.chat.events;
 
 import de.jalumu.magma.module.chat.MagmaChatModule;
-import de.jalumu.magma.platform.base.module.MagmaModule;
 import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
-import io.papermc.paper.event.player.AsyncChatEvent;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.io.File;
 import java.io.IOException;
 
-public class ChatEvents implements Listener {
+public class ConnectionEvents implements Listener {
+
 
     private MagmaChatModule module;
 
     private YamlConfiguration configuration;
 
-    public ChatEvents(MagmaChatModule magmaChatModule) {
+    public ConnectionEvents(MagmaChatModule magmaChatModule) {
         module = magmaChatModule;
 
-        File config = new File(module.getDataFolder(), "chat.yml");
+        File config = new File(module.getDataFolder(), "join.yml");
         configuration = new YamlConfiguration();
 
         if (!config.exists()) {
@@ -46,7 +42,8 @@ public class ChatEvents implements Listener {
             e.printStackTrace();
         }
 
-        configuration.addDefault("chat.format", "<rank_displayname> <dark_gray>| <player_first_prefix_color><player_name> <dark_gray>-<reset> <message>");
+        configuration.addDefault("join.format", "<dark_gray>[<green>+<dark_gray>] <rank_displayname> <dark_gray>| <player_first_prefix_color><player_name>");
+        configuration.addDefault("leave.format", "<dark_gray>[<red>-<dark_gray>] <rank_displayname> <dark_gray>| <player_first_prefix_color><player_name>");
 
 
         configuration.options().copyDefaults(true);
@@ -58,14 +55,15 @@ public class ChatEvents implements Listener {
         }
     }
 
+
     @EventHandler
-    public void onChat(AsyncChatEvent event) {
-        Player player = event.getPlayer();
-        Component chatFormat = MiniMessage.miniMessage().deserialize(configuration.getString("chat.format"), Placeholders.player(player.getUniqueId()), Placeholder.component("message", event.message()));
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            p.sendMessage(chatFormat);
-        }
-        event.setCancelled(true);
+    public void onJoin(PlayerJoinEvent event) {
+        event.joinMessage(MiniMessage.miniMessage().deserialize(configuration.getString("join.format"), Placeholders.player(event.getPlayer().getUniqueId())));
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent event) {
+        event.quitMessage(MiniMessage.miniMessage().deserialize(configuration.getString("leave.format"), Placeholders.player(event.getPlayer().getUniqueId())));
     }
 
 }
