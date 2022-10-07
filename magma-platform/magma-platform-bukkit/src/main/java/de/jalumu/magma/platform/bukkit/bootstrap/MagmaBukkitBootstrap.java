@@ -10,23 +10,27 @@ import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
+import de.jalumu.magma.platform.bukkit.module.RegisteredBukkitModule;
 import de.jalumu.magma.platform.bukkit.text.BukkitNotificationProvider;
 import de.jalumu.magma.platform.bukkit.text.placeholder.BukkitPlaceholderProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 
-@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {"ProtocolLib"},softDependsPlugin = {"Vault", "LuckPerms"})
+@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {"ProtocolLib"}, softDependsPlugin = {"Vault", "LuckPerms"})
 public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
 
-    private ModuleLoader moduleLoader;
+    private BukkitModuleLoader moduleLoader;
 
     private Permission perms = null;
 
@@ -40,7 +44,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public void onLoad() {
         try {
-            Files.createDirectories(this.getDataFolder().toPath());
+            Files.createDirectories(Paths.get(this.getDataFolder().toPath() + File.separator + "modules"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,13 +60,14 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
         PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
 
+        ConfigurationSerialization.registerClass(RegisteredBukkitModule.class);
+
         moduleLoader = new BukkitModuleLoader(this);
-        moduleLoader.registerModule(new MagmaChatModule());
-        moduleLoader.registerModule(new MagmaTablistModule());
+        moduleLoader.registerModule(new MagmaChatModule(this, new File(this.getDataFolder(), "modules/chat")));
+        moduleLoader.registerModule(new MagmaTablistModule(this, new File(this.getDataFolder(), "modules/tablist")));
 
         SplashScreen.splashScreen(this);
-        moduleLoader.enableModule("Magma-Chat");
-        moduleLoader.enableModule("Magma-Tablist");
+        moduleLoader.autoLoad();
 
     }
 

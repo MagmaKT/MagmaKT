@@ -49,7 +49,6 @@ public class TablistHandler {
                 team.prefix(prefix);
                 team.addPlayer(sorted);
                 team.addEntry(sorted.getDisplayName());
-                System.out.println(team.getPrefix());
                 i++;
             }
         }

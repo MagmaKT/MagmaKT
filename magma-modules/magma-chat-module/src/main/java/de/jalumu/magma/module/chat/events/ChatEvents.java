@@ -27,7 +27,7 @@ public class ChatEvents implements Listener {
     public ChatEvents(MagmaChatModule magmaTablistModule) {
         module = magmaTablistModule;
 
-        File config = new File(module.getBukkit().getDataFolder(), "chat.yml");
+        File config = new File(module.getDataFolder(), "chat.yml");
         configuration = new YamlConfiguration();
 
         if (!config.exists()) {

@@ -26,7 +26,7 @@ public class ConnectionEvents implements Listener {
     public ConnectionEvents(MagmaTablistModule magmaTablistModule) {
         module = magmaTablistModule;
 
-        File config = new File(module.getBukkit().getDataFolder(), "tablist.yml");
+        File config = new File(module.getDataFolder(), "tablist.yml");
         configuration = new YamlConfiguration();
 
         if (!config.exists()) {
