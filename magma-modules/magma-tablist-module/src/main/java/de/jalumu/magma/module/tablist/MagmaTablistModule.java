@@ -3,7 +3,7 @@ package de.jalumu.magma.module.tablist;
 import de.jalumu.magma.module.tablist.events.ConnectionEvents;
 import de.jalumu.magma.module.tablist.handler.TablistHandler;
 import de.jalumu.magma.module.tablist.util.NameChanger;
-import de.jalumu.magma.platform.base.module.MagmaModule;
+import de.jalumu.magma.platform.base.module.ModuleBase;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import net.milkbowl.vault.permission.Permission;
@@ -12,22 +12,21 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MagmaTablistModule implements MagmaModule {
+import java.io.File;
 
-    private MagmaPlatform platform;
+public class MagmaTablistModule extends ModuleBase {
 
     private Permission perms = null;
 
     private NameChanger nameChanger;
 
-    @Override
-    public String getName() {
-        return "Magma-Tablist";
+    public MagmaTablistModule(MagmaPlatform platform, File dataFolder) {
+        super(platform, dataFolder);
     }
 
     @Override
-    public void onLoad() {
-
+    public String getName() {
+        return "Magma-Tablist";
     }
 
     @Override
@@ -37,7 +36,7 @@ public class MagmaTablistModule implements MagmaModule {
 
         nameChanger = new NameChanger(getBukkit());
 
-        Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) platform.getMagmaPluginInstance());
+        Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) getPlatform().getMagmaPluginInstance());
 
         Bukkit.getScheduler().runTaskTimer(getBukkit(), bukkitTask -> {
             TablistHandler.updateDecoration();
@@ -46,27 +45,8 @@ public class MagmaTablistModule implements MagmaModule {
     }
 
     @Override
-    public void onDisable() {
-
-    }
-
-    @Override
-    public void onUnload() {
-
-    }
-
-    @Override
-    public MagmaPlatform getPlatform() {
-        return platform;
-    }
-
-    @Override
-    public boolean isCompatible(MagmaPlatform platform) {
-        if (platform.getPlatformType() == MagmaPlatformType.GAMESERVER) {
-            this.platform = platform;
-            return true;
-        }
-        return false;
+    public boolean isCompatible() {
+        return getPlatform().getPlatformType() == MagmaPlatformType.GAMESERVER;
     }
 
     public JavaPlugin getBukkit() {

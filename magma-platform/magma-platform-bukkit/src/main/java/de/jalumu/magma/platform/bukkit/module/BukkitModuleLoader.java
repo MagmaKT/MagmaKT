@@ -19,7 +19,7 @@ public class BukkitModuleLoader implements ModuleLoader {
 
     @Override
     public void registerModule(MagmaModule module) {
-        if (module.isCompatible(paperBootstrap)) {
+        if (module.isCompatible()) {
             modules.put(module.getName(), module);
             module.onLoad();
         }

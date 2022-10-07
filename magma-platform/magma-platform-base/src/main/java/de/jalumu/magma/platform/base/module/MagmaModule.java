@@ -2,6 +2,8 @@ package de.jalumu.magma.platform.base.module;
 
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 
+import java.io.File;
+
 public interface MagmaModule {
 
     String getName();
@@ -12,6 +14,8 @@ public interface MagmaModule {
     void onUnload();
 
     MagmaPlatform getPlatform();
-    boolean isCompatible(MagmaPlatform platform);
+    boolean isCompatible();
+
+    File getDataFolder();
 
 }

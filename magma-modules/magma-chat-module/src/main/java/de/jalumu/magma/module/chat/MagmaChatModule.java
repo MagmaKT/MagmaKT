@@ -2,15 +2,21 @@ package de.jalumu.magma.module.chat;
 
 import de.jalumu.magma.module.chat.events.ChatEvents;
 import de.jalumu.magma.platform.base.module.MagmaModule;
+import de.jalumu.magma.platform.base.module.ModuleBase;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MagmaChatModule implements MagmaModule {
+import java.io.File;
 
-    private MagmaPlatform platform;
+public class MagmaChatModule extends ModuleBase {
+
+
+    public MagmaChatModule(MagmaPlatform platform, File dataFolder) {
+        super(platform, dataFolder);
+    }
 
     @Override
     public String getName() {
@@ -18,38 +24,14 @@ public class MagmaChatModule implements MagmaModule {
     }
 
     @Override
-    public void onLoad() {
-       // platform.getLogger().info("Load");
-    }
-
-    @Override
     public void onEnable() {
         //platform.getLogger().info("Enable");
-        Bukkit.getPluginManager().registerEvents(new ChatEvents(this), (Plugin) platform.getMagmaPluginInstance());
+        Bukkit.getPluginManager().registerEvents(new ChatEvents(this), (Plugin) getPlatform().getMagmaPluginInstance());
     }
 
     @Override
-    public void onDisable() {
-        //platform.getLogger().info("Disable");
-    }
-
-    @Override
-    public void onUnload() {
-        //platform.getLogger().info("Unload");
-    }
-
-    @Override
-    public MagmaPlatform getPlatform() {
-        return platform;
-    }
-
-    @Override
-    public boolean isCompatible(MagmaPlatform platform) {
-        if (platform.getPlatformType() == MagmaPlatformType.GAMESERVER){
-            this.platform = platform;
-            return true;
-        }
-        return false;
+    public boolean isCompatible() {
+        return getPlatform().getPlatformType() == MagmaPlatformType.GAMESERVER;
     }
 
     public JavaPlugin getBukkit() {

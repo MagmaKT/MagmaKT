@@ -18,10 +18,11 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {"ProtocolLib"},softDependsPlugin = {"Vault", "LuckPerms"})
+@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {"ProtocolLib"}, softDependsPlugin = {"Vault", "LuckPerms"})
 public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
@@ -57,8 +58,8 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
 
         moduleLoader = new BukkitModuleLoader(this);
-        moduleLoader.registerModule(new MagmaChatModule());
-        moduleLoader.registerModule(new MagmaTablistModule());
+        moduleLoader.registerModule(new MagmaChatModule(this, new File(this.getDataFolder(), "modules/chat")));
+        moduleLoader.registerModule(new MagmaTablistModule(this, new File(this.getDataFolder(), "modules/tablist")));
 
         SplashScreen.splashScreen(this);
         moduleLoader.enableModule("Magma-Chat");
