@@ -1,6 +1,7 @@
 package de.jalumu.magma.module.chat;
 
 import de.jalumu.magma.module.chat.events.ChatEvents;
+import de.jalumu.magma.module.chat.events.ConnectionEvents;
 import de.jalumu.magma.platform.base.module.MagmaModule;
 import de.jalumu.magma.platform.base.module.ModuleBase;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
@@ -27,6 +28,7 @@ public class MagmaChatModule extends ModuleBase {
     public void onEnable() {
         //platform.getLogger().info("Enable");
         Bukkit.getPluginManager().registerEvents(new ChatEvents(this), (Plugin) getPlatform().getMagmaPluginInstance());
+        Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) getPlatform().getMagmaPluginInstance());
     }
 
     @Override
