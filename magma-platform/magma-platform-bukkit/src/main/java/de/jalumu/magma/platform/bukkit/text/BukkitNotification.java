@@ -1,4 +1,4 @@
-package de.jalumu.magma.platform.paper.text;
+package de.jalumu.magma.platform.bukkit.text;
 
 import de.jalumu.magma.platform.base.text.notification.NotificationBaseImp;
 import net.kyori.adventure.key.Key;

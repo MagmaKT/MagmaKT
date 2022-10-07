@@ -1,7 +1,7 @@
-package de.jalumu.magma.platform.paper.text.placeholder;
+package de.jalumu.magma.platform.bukkit.text.placeholder;
 
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
-import de.jalumu.magma.platform.paper.bootstrap.MagmaPaperBootstrap;
+import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
@@ -14,9 +14,9 @@ import java.util.UUID;
 
 public class BukkitPlaceholderProvider extends PlaceholderProvider {
 
-    private MagmaPaperBootstrap magma;
+    private MagmaBukkitBootstrap magma;
 
-    public BukkitPlaceholderProvider(MagmaPaperBootstrap magma) {
+    public BukkitPlaceholderProvider(MagmaBukkitBootstrap magma) {
         this.magma = magma;
     }
 
