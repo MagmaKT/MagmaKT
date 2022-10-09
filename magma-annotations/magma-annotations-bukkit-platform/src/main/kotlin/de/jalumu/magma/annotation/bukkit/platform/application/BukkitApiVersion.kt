@@ -7,6 +7,6 @@ enum class BukkitApiVersion(val value: String) {
     V1_16("1.16"),
     V1_17("1.17"),
     V1_18("1.18"),
-    V1_19("1.19"),
+    V1_19("1.19");
 
 }
