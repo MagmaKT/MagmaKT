@@ -1,7 +1,5 @@
 package de.jalumu.magma.annotation.platform.bukkit.processor;
 
-import de.jalumu.magma.annotation.bukkit.platform.application.BukkitApiVersion;
-import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -31,15 +29,17 @@ import javax.tools.StandardLocation;
 import javax.tools.Diagnostic.Kind;
 import javax.tools.JavaFileManager.Location;
 
+import de.jalumu.magma.annotation.platform.bukkit.plugin.BukkitApiVersion;
+import de.jalumu.magma.annotation.platform.bukkit.plugin.BukkitPlugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.DumperOptions.FlowStyle;
 import org.yaml.snakeyaml.nodes.Tag;
 
-@SupportedAnnotationTypes({"de.jalumu.magma.annotation.bukkit.platform.*"})
+@SupportedAnnotationTypes({"de.jalumu.magma.annotation.platform.bukkit.*"})
 @SupportedSourceVersion(SourceVersion.RELEASE_17)
-public final class AnnotationProcessor extends AbstractProcessor {
+public final class BukkitPlatformAnnotationProcessor extends AbstractProcessor {
     public boolean process(@Nullable Set annotations, @Nullable RoundEnvironment roundEnv) {
         Element mainPluginElement = null;
         Set var10000 = roundEnv != null ? roundEnv.getElementsAnnotatedWith(BukkitPlugin.class) : null;
@@ -64,8 +64,8 @@ public final class AnnotationProcessor extends AbstractProcessor {
                         return false;
                     } else {
                         ProcessingEnvironment var26 = this.processingEnv;
-                        if (!var26.getTypeUtils().isSubtype(mainPluginType.asType(), this.fromClass(JavaPlugin.class))) {
-                            this.raiseError("Main plugin class is not an subclass of JavaPlugin!", (Element) mainPluginType);
+                        if ( !processingEnv.getTypeUtils().isSubtype( mainPluginType.asType(), fromClass( JavaPlugin.class ) ) ) {
+                            raiseError( "Main plugin class is not an subclass of JavaPlugin!", mainPluginType );
                         }
 
                         if (mainPluginType.getModifiers().contains(Modifier.ABSTRACT)) {
@@ -86,12 +86,12 @@ public final class AnnotationProcessor extends AbstractProcessor {
                                 this.processAndPutString(yml, "description", (Element) mainPluginType, "", BukkitPlugin.class, "description");
                                 var10003 = (Element) mainPluginType;
                                 this.processAndPutString(yml, "prefix", var10003, name, BukkitPlugin.class, "prefix");
-                                yml.put("api-version", ((BukkitApiVersion) this.process((Element) mainPluginType, BukkitApiVersion.V1_16, BukkitPlugin.class, BukkitApiVersion.class, "apiVersion")).getValue());
+                                yml.put("api-version", ((BukkitApiVersion) this.process((Element) mainPluginType, BukkitApiVersion.V1_16, BukkitPlugin.class, BukkitApiVersion.class, "apiVersion")).getApiVersion());
                                 this.processAndPutString(yml, "author", (Element) mainPluginType, "", BukkitPlugin.class, "author");
                                 this.processAndPutArray(yml, "authors", (Element) mainPluginType, new String[0], BukkitPlugin.class, "authors");
-                                this.processAndPutArray(yml, "softdepend", (Element) mainPluginType, new String[0], BukkitPlugin.class, "softDependsPlugin");
-                                this.processAndPutArray(yml, "depend", (Element) mainPluginType, new String[0], BukkitPlugin.class, "dependsPlugin");
-                                this.processAndPutArray(yml, "loadbefore", (Element) mainPluginType, new String[0], BukkitPlugin.class, "loadBeforePlugin");
+                                this.processAndPutArray(yml, "softdepend", (Element) mainPluginType, new String[0], BukkitPlugin.class, "softDepend");
+                                this.processAndPutArray(yml, "depend", (Element) mainPluginType, new String[0], BukkitPlugin.class, "depend");
+                                this.processAndPutArray(yml, "loadbefore", (Element) mainPluginType, new String[0], BukkitPlugin.class, "loadBefore");
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } catch (Throwable e) {

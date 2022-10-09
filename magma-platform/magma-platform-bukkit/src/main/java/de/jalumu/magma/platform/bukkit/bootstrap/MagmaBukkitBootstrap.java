@@ -1,6 +1,6 @@
 package de.jalumu.magma.platform.bukkit.bootstrap;
 
-import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
+import de.jalumu.magma.annotation.platform.bukkit.plugin.BukkitPlugin;
 import de.jalumu.magma.module.chat.MagmaChatModule;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {"ProtocolLib"}, softDependsPlugin = {"Vault", "LuckPerms"})
+@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", depend = {"ProtocolLib"}, softDepend = {"Vault", "LuckPerms"})
 public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;

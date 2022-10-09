@@ -1,7 +1,5 @@
 package de.jalumu.magma.annotation.platform.bukkit.plugin;
 
-import de.jalumu.magma.annotation.bukkit.platform.application.BukkitApiVersion;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
