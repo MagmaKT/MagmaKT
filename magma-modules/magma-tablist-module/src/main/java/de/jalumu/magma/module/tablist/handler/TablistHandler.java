@@ -52,10 +52,8 @@ public class TablistHandler {
                 Component prefix = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.prefix"), Placeholders.player(sorted.getUniqueId()));
 
                 String legacy = LegacyComponentSerializer.legacyAmpersand().serialize(prefix);
-                player.sendMessage(Component.text(legacy));
 
                 String split = legacy.substring(0, 2);
-                player.sendMessage(Component.text(split));
 
                 team.prefix(prefix);
                 team.addPlayer(sorted);

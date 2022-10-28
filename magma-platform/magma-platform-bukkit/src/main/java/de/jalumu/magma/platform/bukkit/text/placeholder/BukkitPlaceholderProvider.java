@@ -35,7 +35,7 @@ public class BukkitPlaceholderProvider extends PlaceholderProvider {
                 .resolver(Placeholder.parsed("bungee_player_online", PlaceholderAPI.setPlaceholders(player, "%bungee_total%")))
                 .resolver(Placeholder.parsed("player_name", player.getName()))
                 .resolver(Placeholder.parsed("player_uuid", uuid.toString()))
-                .resolver(Placeholder.parsed("rank_displayname", magma.getPerms().getPrimaryGroup(player)))
+                .resolver(Placeholder.parsed("rank_displayname", getPlayerGroupName(player)))
                 .resolver(Placeholder.parsed("player_prefix", getPlayerPrefix(player)))
                 .resolver(Placeholder.parsed("player_first_prefix_color", getPlayerPrefixColor(player)))
                 .build();
@@ -44,6 +44,12 @@ public class BukkitPlaceholderProvider extends PlaceholderProvider {
     private String getPlayerPrefix(Player player) {
         LuckPerms api = LuckPermsProvider.get();
         return api.getPlayerAdapter(Player.class).getUser(player).getCachedData().getMetaData().getPrefix();
+    }
+
+    private String getPlayerGroupName(Player player) {
+        LuckPerms api = LuckPermsProvider.get();
+        String group = api.getPlayerAdapter(Player.class).getUser(player).getCachedData().getMetaData().getPrimaryGroup();
+        return api.getGroupManager().getGroup(group).getDisplayName();
     }
 
     private String getPlayerPrefixColor(Player player) {
