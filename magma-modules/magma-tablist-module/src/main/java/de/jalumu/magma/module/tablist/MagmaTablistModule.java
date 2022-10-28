@@ -9,7 +9,6 @@ import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -17,8 +16,6 @@ import java.io.File;
 public class MagmaTablistModule extends ModuleBase {
 
     private Permission perms = null;
-
-    private NameChanger nameChanger;
 
     public MagmaTablistModule(MagmaPlatform platform, File dataFolder) {
         super(platform, dataFolder);
@@ -31,10 +28,7 @@ public class MagmaTablistModule extends ModuleBase {
 
     @Override
     public void onEnable() {
-        setupPermissions();
         //TablistHandler.init(this);
-
-        nameChanger = new NameChanger(getBukkit());
 
         Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) getPlatform().getMagmaPluginInstance());
 
@@ -53,17 +47,4 @@ public class MagmaTablistModule extends ModuleBase {
         return (JavaPlugin) getPlatform();
     }
 
-    private boolean setupPermissions() {
-        RegisteredServiceProvider<Permission> rsp = getBukkit().getServer().getServicesManager().getRegistration(Permission.class);
-        perms = rsp.getProvider();
-        return perms != null;
-    }
-
-    public Permission getPerms() {
-        return perms;
-    }
-
-    public NameChanger getNameChanger() {
-        return nameChanger;
-    }
 }

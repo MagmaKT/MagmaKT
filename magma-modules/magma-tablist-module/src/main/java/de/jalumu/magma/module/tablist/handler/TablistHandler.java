@@ -2,9 +2,12 @@ package de.jalumu.magma.module.tablist.handler;
 
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
+import de.jalumu.magma.platform.base.text.util.ColorParser;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
@@ -45,9 +48,16 @@ public class TablistHandler {
                 if (team == null) {
                     team = board.registerNewTeam(i + sorted.getName());
                 }
+
                 Component prefix = MiniMessage.miniMessage().deserialize(configuration.getString("tablist.player.prefix"), Placeholders.player(sorted.getUniqueId()));
+
+                String legacy = LegacyComponentSerializer.legacyAmpersand().serialize(prefix);
+
+                String split = legacy.substring(0, 2);
+
                 team.prefix(prefix);
                 team.addPlayer(sorted);
+                team.color(ColorParser.parseName(ColorParser.parseColorCode(split)));
                 team.addEntry(sorted.getDisplayName());
                 i++;
             }
