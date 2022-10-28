@@ -72,9 +72,9 @@ public class ConnectionEvents implements Listener {
         event.getPlayer().customName(displayname);
         event.getPlayer().setCustomNameVisible(true);
 
-        if (event.getPlayer().getName().length() < 14) {
-            module.getNameChanger().changeName(event.getPlayer(), LegacyComponentSerializer.builder().character(LegacyComponentSerializer.SECTION_CHAR).build().serialize(displayname));
-        }
+        //if (event.getPlayer().getName().length() < 14) {
+        //module.getNameChanger().changeName(event.getPlayer(), LegacyComponentSerializer.builder().character(LegacyComponentSerializer.SECTION_CHAR).build().serialize(displayname));
+        //}
 
         TablistHandler.updateTablist();
     }
