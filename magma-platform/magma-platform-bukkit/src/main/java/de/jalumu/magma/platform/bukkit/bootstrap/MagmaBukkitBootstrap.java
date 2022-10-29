@@ -9,6 +9,7 @@ import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
+import de.jalumu.magma.platform.bukkit.command.MagmaCommand;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
 import de.jalumu.magma.platform.bukkit.module.RegisteredBukkitModule;
 import de.jalumu.magma.platform.bukkit.text.BukkitNotificationProvider;
@@ -69,6 +70,8 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
         SplashScreen.splashScreen(this);
         moduleLoader.autoLoad();
+
+        this.getCommand("magma").setExecutor(new MagmaCommand(this));
 
     }
 
