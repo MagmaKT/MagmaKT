@@ -3,6 +3,7 @@ package de.jalumu.magma.platform.bukkit.bootstrap;
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
 import de.jalumu.magma.module.chat.MagmaChatModule;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
+import de.jalumu.magma.platform.base.database.mysql.MySQLDatabase;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
@@ -10,6 +11,7 @@ import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.platform.bukkit.command.MagmaCommand;
+import de.jalumu.magma.platform.bukkit.database.BukkitMySQLManager;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
 import de.jalumu.magma.platform.bukkit.module.RegisteredBukkitModule;
 import de.jalumu.magma.platform.bukkit.text.BukkitNotificationProvider;
@@ -35,6 +37,8 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     private BukkitModuleLoader moduleLoader;
 
     private Permission perms = null;
+
+    private BukkitMySQLManager mySQLManager;
 
     public BukkitAudiences adventure() {
         if (this.adventure == null) {
@@ -73,6 +77,10 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
         this.getCommand("magma").setExecutor(new MagmaCommand(this));
 
+
+
+        mySQLManager = new BukkitMySQLManager(this);
+
     }
 
     @Override
@@ -81,6 +89,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
             this.adventure.close();
             this.adventure = null;
         }
+        mySQLManager.getDatabase().shutdown();
     }
 
     @Override
