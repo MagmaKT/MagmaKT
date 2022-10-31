@@ -2,6 +2,7 @@ package de.jalumu.magma.platform.bukkit.bootstrap;
 
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
 import de.jalumu.magma.module.chat.MagmaChatModule;
+import de.jalumu.magma.module.command.MagmaCommandModule;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.platform.base.database.mysql.MySQLDatabase;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
@@ -71,12 +72,12 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaChatModule(this, new File(this.getDataFolder(), "modules/chat")));
         moduleLoader.registerModule(new MagmaTablistModule(this, new File(this.getDataFolder(), "modules/tablist")));
+        moduleLoader.registerModule(new MagmaCommandModule(this, new File(this.getDataFolder(), "modules/command")));
 
         SplashScreen.splashScreen(this);
         moduleLoader.autoLoad();
 
         this.getCommand("magma").setExecutor(new MagmaCommand(this));
-
 
 
         mySQLManager = new BukkitMySQLManager(this);
@@ -124,7 +125,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
 
     private boolean setupPermissions() {
-       if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
+        if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
         RegisteredServiceProvider<Permission> rsp = Bukkit.getServicesManager().getRegistration(Permission.class);

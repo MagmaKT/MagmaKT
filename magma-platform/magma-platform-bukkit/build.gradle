@@ -29,6 +29,7 @@ dependencies {
 
     implementation project(":magma-modules:magma-chat-module")
     implementation project(":magma-modules:magma-tablist-module")
+    implementation project(":magma-modules:magma-command-module")
 
     // External dependencies
     implementation "net.kyori:adventure-platform-bukkit:4.1.1"
