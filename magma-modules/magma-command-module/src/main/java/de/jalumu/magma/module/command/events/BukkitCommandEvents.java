@@ -1,14 +1,11 @@
 package de.jalumu.magma.module.command.events;
 
-import com.destroystokyo.paper.event.server.AsyncTabCompleteEvent;
 import de.jalumu.magma.module.command.MagmaCommandModule;
 import de.jalumu.magma.platform.base.text.notification.Notification;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerChatTabCompleteEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.server.TabCompleteEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,11 +46,6 @@ public class BukkitCommandEvents implements org.bukkit.event.Listener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @EventHandler
-    public void onTab(TabCompleteEvent event) {
-
     }
 
     @EventHandler
