@@ -1,6 +1,6 @@
 ![bstats Metrics](assets/MagmaKT.png)
-![bStats Players](https://img.shields.io/bstats/players/16417?style=for-the-badge)
 ![bStats Servers](https://img.shields.io/bstats/servers/16417?style=for-the-badge)
+![bStats Players](https://img.shields.io/bstats/players/16417?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/JaLuMu/MagmaKT?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/JaLuMu/MagmaKT?style=for-the-badge)
 
