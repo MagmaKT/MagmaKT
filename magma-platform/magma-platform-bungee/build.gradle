@@ -21,6 +21,12 @@ dependencies {
     implementation "net.kyori:adventure-platform-bungeecord:4.1.1"
 
 
+    implementation project(":magma-modules:magma-command-module")
+
+    //Config
+    implementation 'com.github.Exlll.ConfigLib:configlib-waterfall:v4.2.0'
+
+
     // Annotations
     compileOnly project(":magma-annotations:magma-annotations-bungee-platform")
     kapt project(":magma-annotations:magma-annotations-bungee-platform")

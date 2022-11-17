@@ -8,6 +8,7 @@ import de.jalumu.magma.platform.base.database.mysql.MySQLDatabase;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
+import de.jalumu.magma.platform.base.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
 import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
@@ -101,6 +102,11 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public MagmaPlatformType getPlatformType() {
         return MagmaPlatformType.GAMESERVER;
+    }
+
+    @Override
+    public ServerImplementation getServerImplementation() {
+        return ServerImplementation.PAPER;
     }
 
     @Override

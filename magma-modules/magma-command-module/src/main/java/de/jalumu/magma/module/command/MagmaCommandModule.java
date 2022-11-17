@@ -1,10 +1,10 @@
 package de.jalumu.magma.module.command;
 
-import de.jalumu.magma.module.command.events.BukkitCommandEvents;
+import de.jalumu.magma.module.command.proxy.PaperProxy;
 import de.jalumu.magma.platform.base.module.ModuleBase;
+import de.jalumu.magma.platform.base.module.proxy.ModuleProxy;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import de.jalumu.magma.platform.base.platform.ServerImplementation;
 
 import java.io.File;
 
@@ -21,12 +21,11 @@ public class MagmaCommandModule extends ModuleBase {
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new BukkitCommandEvents(this), getBukkit());
+        ModuleProxy proxy = new ModuleProxy(this);
+        proxy.registerProxy(ServerImplementation.PAPER, new PaperProxy());
+
     }
 
-    public JavaPlugin getBukkit() {
-        return (JavaPlugin) getPlatform();
-    }
 
     @Override
     public boolean isCompatible() {
