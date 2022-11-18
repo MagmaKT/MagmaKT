@@ -7,7 +7,6 @@ import lombok.NonNull;
 import lombok.experimental.Accessors;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import revxrsal.commands.bukkit.BukkitCommandHandler;
 

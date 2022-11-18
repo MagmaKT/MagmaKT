@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 import lombok.experimental.Accessors;
 
 import java.io.File;
-import java.nio.file.Files;
 
 public abstract class Configuration {
 
@@ -15,18 +14,18 @@ public abstract class Configuration {
         this.file = createFile("magma-kt/config/" + path, fileName, configurationType);
     }
 
-    public abstract <T> T readObject(String path, Class<T> clazz);
+    public abstract <T> T readObject(Class<T> clazz);
 
-    public final <T> T readObject(String path, Class<T> clazz, T defaultType) {
-        var object = readObject(path, clazz);
+    public final <T> T readObject(Class<T> clazz, T defaultType) {
+        var object = readObject(clazz);
         if (object != null) {
             return object;
         }
-        saveObject(path, defaultType);
+        saveObject(defaultType);
         return defaultType;
     }
 
-    public abstract <T> void saveObject(String path, T t);
+    public abstract <T> void saveObject(T t);
 
     @SneakyThrows
     private File createFile(String path, String fileName, ConfigurationType configurationType) {

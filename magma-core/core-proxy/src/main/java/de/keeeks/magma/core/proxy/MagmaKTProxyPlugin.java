@@ -26,7 +26,7 @@ public final class MagmaKTProxyPlugin extends Plugin {
     private BungeeAudiences adventure;
 
     public @NonNull BungeeAudiences adventure() {
-        if(this.adventure == null) {
+        if (this.adventure == null) {
             throw new IllegalStateException("Cannot retrieve audience provider while plugin is not enabled");
         }
         return this.adventure;

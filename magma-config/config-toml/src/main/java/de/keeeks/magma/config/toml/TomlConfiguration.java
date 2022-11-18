@@ -80,12 +80,12 @@ public class TomlConfiguration extends Configuration {
     }
 
     @Override
-    public <T> T readObject(String path, Class<T> clazz) {
+    public <T> T readObject(Class<T> clazz) {
         return toml.to(clazz);
     }
 
     @Override
-    public <T> void saveObject(String path, T t) {
+    public <T> void saveObject(T t) {
         var tomlWriter = new TomlWriter();
         try {
             tomlWriter.write(t, file);

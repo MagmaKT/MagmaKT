@@ -13,10 +13,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
-    implementation project(':magma-config:config-api')
-    implementation project(':magma-config:config-json')
-    implementation project(':magma-config:config-toml')
     compileOnly project(':magma-core:core-api')
+    compileOnly project(':magma-config:config-api')
+
+    implementation 'com.zaxxer:HikariCP:5.0.1'
 }
 
 test {

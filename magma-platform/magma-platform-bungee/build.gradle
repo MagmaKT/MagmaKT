@@ -10,7 +10,8 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' } // This lets gradle find the BungeeCord files online
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    // This lets gradle find the BungeeCord files online
 }
 
 dependencies {

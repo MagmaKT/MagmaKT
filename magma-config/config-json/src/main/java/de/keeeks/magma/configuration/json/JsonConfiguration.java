@@ -23,7 +23,7 @@ public class JsonConfiguration extends Configuration {
     }
 
     @Override
-    public <T> T readObject(String path, Class<T> clazz) {
+    public <T> T readObject(Class<T> clazz) {
         try (FileReader fileReader = new FileReader(file)) {
             return gson.fromJson(fileReader, clazz);
         } catch (IOException e) {
@@ -32,7 +32,7 @@ public class JsonConfiguration extends Configuration {
     }
 
     @Override
-    public <T> void saveObject(String path, T t) {
+    public <T> void saveObject(T t) {
         try (FileWriter fileWriter = new FileWriter(file)) {
             gson.toJson(t, fileWriter);
         } catch (IOException e) {
