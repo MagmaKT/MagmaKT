@@ -11,5 +11,4 @@ public class TestCommand {
     public void test(BukkitActor bukkitActor) {
         bukkitActor.reply(Component.text("Test!").color(TextColor.fromHexString("#8515FF")));
     }
-
 }

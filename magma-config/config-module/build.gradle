@@ -13,11 +13,11 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
-    implementation 'org.apache.commons:commons-collections4:4.4'
-    implementation 'io.github.classgraph:classgraph:4.8.150'
-    implementation 'org.jgrapht:jgrapht-core:1.5.1'
-    implementation 'com.google.code.gson:gson:2.10'
-
+    implementation project(':magma-config:config-api')
+    implementation project(':magma-config:config-json')
+    implementation project(':magma-config:config-toml')
+    implementation project(':magma-config:config-yaml')
+    compileOnly project(':magma-core:core-api')
 }
 
 test {

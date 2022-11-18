@@ -47,9 +47,6 @@ allprojects {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
-    implementation project(":magma-platform:magma-platform-bukkit")
-    implementation project(":magma-platform:magma-platform-bungee")
-
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
