@@ -22,4 +22,6 @@ findProject(':magma-config:config-toml')?.name = 'config-toml'
 include 'magma-database'
 include 'magma-database:database-mysql'
 findProject(':magma-database:database-mysql')?.name = 'database-mysql'
+include 'magma-core:core-placeholders'
+findProject(':magma-core:core-placeholders')?.name = 'core-placeholders'
 

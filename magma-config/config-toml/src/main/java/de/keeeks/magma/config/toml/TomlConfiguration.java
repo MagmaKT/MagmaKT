@@ -13,7 +13,7 @@ public class TomlConfiguration extends Configuration {
 
     private final Toml toml;
 
-    public TomlConfiguration(String path, String fileName) {
+    private TomlConfiguration(String path, String fileName) {
         super(path, fileName, ConfigurationType.TOML);
 
         toml = new Toml().read(file);
@@ -92,5 +92,9 @@ public class TomlConfiguration extends Configuration {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static TomlConfiguration create(String path, String fileName) {
+        return new TomlConfiguration(path, fileName);
     }
 }
