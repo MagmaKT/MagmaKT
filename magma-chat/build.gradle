@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'de.keeeks.magma'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    compileOnly project(":magma-core:core-api")
+    compileOnly project(":magma-core:core-spigot")
+
+    compileOnly 'net.kyori:adventure-platform-bukkit:4.1.2'
+    compileOnly 'com.github.Revxrsal.Lamp:bukkit:3.1.0'
+    compileOnly 'com.github.Revxrsal.Lamp:common:3.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}

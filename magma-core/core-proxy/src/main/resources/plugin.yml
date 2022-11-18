@@ -1,0 +1,4 @@
+name: magmakt-proxy
+author: PaulusDevelopus
+version: 1.0
+main: de.keeeks.magma.core.proxy.MagmaKTProxyPlugin

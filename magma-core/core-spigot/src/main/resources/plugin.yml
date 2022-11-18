@@ -1,0 +1,5 @@
+name: magmakt-spigot
+author: PaulusDevelopus
+version: 1.0
+main: de.keeeks.magma.core.spigot.MagmaKTSpigotPlugin
+api-version: 1.19

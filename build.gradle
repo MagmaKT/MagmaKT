@@ -4,20 +4,22 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group 'org.example'
+group 'de.keeeks.magma'
 version '1.0-SNAPSHOT'
 
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 allprojects {
+    apply {
+        plugin('java')
+        plugin('com.github.johnrengelman.shadow')
+    }
+
     repositories {
-        maven {
-            name = "jalumu-repo"
-            url = "https://repo.jalumu.dev/repository/maven-public/"
-        }
         maven {
             name = 'jitpack'
             url = 'https://jitpack.io'
@@ -30,6 +32,15 @@ allprojects {
             name = 'papermc'
             url = 'https://repo.papermc.io/repository/maven-public/'
         }
+        maven {
+            name = 'dmulloy2'
+            url = 'https://repo.dmulloy2.net/repository/public/'
+        }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.24'
+        annotationProcessor 'org.projectlombok:lombok:1.18.24'
     }
 }
 

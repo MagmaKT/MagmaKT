@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'de.keeeks.magma'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    compileOnly 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
+    implementation 'net.kyori:adventure-platform-bukkit:4.1.2'
+    implementation 'com.github.Revxrsal.Lamp:bukkit:3.1.0'
+    implementation 'com.github.Revxrsal.Lamp:common:3.1.0'
+
+    implementation project(':magma-core:core-api')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
