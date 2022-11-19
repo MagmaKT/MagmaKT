@@ -4,13 +4,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group 'org.example'
+group 'de.jalumu.magma'
 version '1.0-SNAPSHOT'
-
-
-repositories {
-    mavenCentral()
-}
 
 allprojects {
     repositories {
@@ -34,19 +29,10 @@ allprojects {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-
     implementation project(":magma-platform:magma-platform-bukkit")
     implementation project(":magma-platform:magma-platform-bungee")
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 shadowJar {
     relocate 'org.bstats', 'de.jalumu.magma.platform.bukkit.bstats'
-}
-
-test {
-    useJUnitPlatform()
 }
