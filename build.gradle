@@ -15,10 +15,6 @@ repositories {
 allprojects {
     repositories {
         maven {
-            name = "jalumu-repo"
-            url = "https://repo.jalumu.dev/repository/maven-public/"
-        }
-        maven {
             name = 'jitpack'
             url = 'https://jitpack.io'
         }
@@ -29,6 +25,10 @@ allprojects {
         maven {
             name = 'papermc'
             url = 'https://repo.papermc.io/repository/maven-public/'
+        }
+        maven {
+            name = 'dmulloy2'
+            url = "https://repo.dmulloy2.net/repository/public/"
         }
     }
 }
