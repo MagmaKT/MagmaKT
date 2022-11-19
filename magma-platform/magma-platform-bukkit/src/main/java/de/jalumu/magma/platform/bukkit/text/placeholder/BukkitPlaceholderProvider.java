@@ -1,6 +1,6 @@
 package de.jalumu.magma.platform.bukkit.text.placeholder;
 
-import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
+import de.jalumu.magma.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;

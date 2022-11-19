@@ -1,7 +1,7 @@
 package de.jalumu.magma.module.command.events;
 
 import de.jalumu.magma.module.command.MagmaCommandModule;
-import de.jalumu.magma.platform.base.text.notification.Notification;
+import de.jalumu.magma.text.notification.Notification;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
