@@ -1,7 +1,7 @@
 package de.jalumu.magma.module.chat.events;
 
 import de.jalumu.magma.module.chat.MagmaChatModule;
-import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
+import de.jalumu.magma.text.placeholder.Placeholders;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;

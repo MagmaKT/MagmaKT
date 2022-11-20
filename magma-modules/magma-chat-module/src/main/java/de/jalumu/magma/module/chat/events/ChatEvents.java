@@ -1,8 +1,7 @@
 package de.jalumu.magma.module.chat.events;
 
 import de.jalumu.magma.module.chat.MagmaChatModule;
-import de.jalumu.magma.platform.base.module.MagmaModule;
-import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
+import de.jalumu.magma.text.placeholder.Placeholders;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -13,7 +12,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.io.File;
 import java.io.IOException;

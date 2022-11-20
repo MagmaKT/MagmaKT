@@ -1,4 +1,4 @@
-package de.jalumu.magma.platform.base.text.notification;
+package de.jalumu.magma.text.notification;
 
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;

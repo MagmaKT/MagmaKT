@@ -3,8 +3,8 @@ plugins {
     id "org.jetbrains.kotlin.jvm"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group = getRootProject().group
+version = getRootProject().version
 
 repositories {
     mavenCentral()

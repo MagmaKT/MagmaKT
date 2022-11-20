@@ -1,8 +1,8 @@
 package de.jalumu.magma.platform.bukkit.text;
 
-import de.jalumu.magma.platform.base.text.notification.Notification;
-import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
 import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
+import de.jalumu.magma.text.notification.Notification;
+import de.jalumu.magma.text.notification.NotificationProvider;
 import org.bukkit.Sound;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;

@@ -1,5 +1,6 @@
 package de.jalumu.magma.annotation.bukkit.platform
 
+import com.google.common.collect.Maps
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.RoundEnvironment
@@ -22,6 +23,8 @@ import javax.tools.StandardLocation
 import org.yaml.snakeyaml.Yaml
 import org.yaml.snakeyaml.nodes.Tag
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitApiVersion
+import de.jalumu.magma.annotation.bukkit.platform.command.Command
+import de.jalumu.magma.annotation.bukkit.platform.permission.PermissionDefault
 import javax.lang.model.element.*
 
 @SupportedAnnotationTypes("de.jalumu.magma.annotation.bukkit.platform.*")
@@ -130,6 +133,42 @@ class AnnotationProcessor : AbstractProcessor() {
             BukkitPlugin::class.java,
             "loadBeforePlugin"
         )
+
+        val commandElements: Set<Element> = roundEnv.getElementsAnnotatedWith(Command::class.java) as Set<Element>
+
+        val commandMap = Maps.newLinkedHashMap<String, Map<String, Any>>()
+        val permissionMap = Maps.newLinkedHashMap<String, Map<String, Any>>()
+
+        commandElements.forEach {
+            val commandName = processToString(it, "", Command::class.java, "name")
+            val description = processToString(it as TypeElement, "", Command::class.java, "description")
+            val aliases = processToArray(it, emptyArray<String>(), Command::class.java, "aliases")
+
+            val permissionName = processToString(it, "", Command::class.java, "permission")
+            val permissionDefault = process(
+                it,
+                PermissionDefault.GRANTED,
+                Command::class.java,
+                PermissionDefault::class.java,
+                "permissionDefault"
+            )
+
+            val command: MutableMap<String, Any> = Maps.newLinkedHashMap()
+            val permission: MutableMap<String, Any> = Maps.newLinkedHashMap()
+
+            command["description"] = description
+
+            command["aliases"] = aliases
+
+            permission["default"] = permissionDefault.value
+
+            commandMap[commandName] = command
+            permissionMap[permissionName] = permission
+        }
+
+        yml["commands"] = commandMap
+        yml["permissions"] = permissionMap
+
 
         try {
             val yaml = Yaml()

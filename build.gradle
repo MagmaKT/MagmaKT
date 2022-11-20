@@ -4,20 +4,11 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group 'org.example'
+group 'de.jalumu.magma'
 version '1.0-SNAPSHOT'
-
-
-repositories {
-    mavenCentral()
-}
 
 allprojects {
     repositories {
-        maven {
-            name = "jalumu-repo"
-            url = "https://repo.jalumu.dev/repository/maven-public/"
-        }
         maven {
             name = 'jitpack'
             url = 'https://jitpack.io'
@@ -26,23 +17,22 @@ allprojects {
             name = 'papi'
             url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
         }
+        maven {
+            name = 'papermc'
+            url = 'https://repo.papermc.io/repository/maven-public/'
+        }
+        maven {
+            name = 'dmulloy2'
+            url = "https://repo.dmulloy2.net/repository/public/"
+        }
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-
     implementation project(":magma-platform:magma-platform-bukkit")
     implementation project(":magma-platform:magma-platform-bungee")
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 shadowJar {
     relocate 'org.bstats', 'de.jalumu.magma.platform.bukkit.bstats'
-}
-
-test {
-    useJUnitPlatform()
 }

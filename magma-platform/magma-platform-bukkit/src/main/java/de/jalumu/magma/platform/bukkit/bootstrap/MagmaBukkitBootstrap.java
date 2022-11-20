@@ -2,17 +2,21 @@ package de.jalumu.magma.platform.bukkit.bootstrap;
 
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
 import de.jalumu.magma.module.chat.MagmaChatModule;
+import de.jalumu.magma.module.command.MagmaCommandModule;
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.MagmaPlatform;
 import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
+import de.jalumu.magma.platform.base.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
-import de.jalumu.magma.platform.base.text.notification.NotificationProvider;
-import de.jalumu.magma.platform.base.text.placeholder.PlaceholderProvider;
+import de.jalumu.magma.text.placeholder.PlaceholderProvider;
+import de.jalumu.magma.platform.bukkit.command.MagmaCommand;
+import de.jalumu.magma.platform.bukkit.database.BukkitMySQLManager;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
 import de.jalumu.magma.platform.bukkit.module.RegisteredBukkitModule;
 import de.jalumu.magma.platform.bukkit.text.BukkitNotificationProvider;
 import de.jalumu.magma.platform.bukkit.text.placeholder.BukkitPlaceholderProvider;
+import de.jalumu.magma.text.notification.NotificationProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
@@ -26,7 +30,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-@BukkitPlugin(name = "MagmaKT-Bukkit", version = "0.0.1", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"ProtocolLib", "Vault", "LuckPerms"})
+@BukkitPlugin(name = "MagmaKT-Bukkit", version = "Dev-Build", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"ProtocolLib", "Vault", "LuckPerms"})
 public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private BukkitAudiences adventure;
@@ -34,6 +38,8 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     private BukkitModuleLoader moduleLoader;
 
     private Permission perms = null;
+
+    private BukkitMySQLManager mySQLManager;
 
     public BukkitAudiences adventure() {
         if (this.adventure == null) {
@@ -66,9 +72,15 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         moduleLoader = new BukkitModuleLoader(this);
         moduleLoader.registerModule(new MagmaChatModule(this, new File(this.getDataFolder(), "modules/chat")));
         moduleLoader.registerModule(new MagmaTablistModule(this, new File(this.getDataFolder(), "modules/tablist")));
+        moduleLoader.registerModule(new MagmaCommandModule(this, new File(this.getDataFolder(), "modules/command")));
 
         SplashScreen.splashScreen(this);
         moduleLoader.autoLoad();
+
+        this.getCommand("magma").setExecutor(new MagmaCommand(this));
+
+
+        mySQLManager = new BukkitMySQLManager(this);
 
     }
 
@@ -78,16 +90,22 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
             this.adventure.close();
             this.adventure = null;
         }
+        mySQLManager.getDatabase().shutdown();
     }
 
     @Override
     public String getVersion() {
-        return "Unknown";
+        return this.getDescription().getVersion();
     }
 
     @Override
     public MagmaPlatformType getPlatformType() {
         return MagmaPlatformType.GAMESERVER;
+    }
+
+    @Override
+    public ServerImplementation getServerImplementation() {
+        return ServerImplementation.PAPER;
     }
 
     @Override
@@ -112,7 +130,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
 
     private boolean setupPermissions() {
-       if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
+        if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
         RegisteredServiceProvider<Permission> rsp = Bukkit.getServicesManager().getRegistration(Permission.class);

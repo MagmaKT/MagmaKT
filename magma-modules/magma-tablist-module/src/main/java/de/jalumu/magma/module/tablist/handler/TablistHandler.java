@@ -1,11 +1,10 @@
 package de.jalumu.magma.module.tablist.handler;
 
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
-import de.jalumu.magma.platform.base.text.placeholder.Placeholders;
+import de.jalumu.magma.text.placeholder.Placeholders;
 import de.jalumu.magma.platform.base.text.util.ColorParser;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.luckperms.api.LuckPerms;

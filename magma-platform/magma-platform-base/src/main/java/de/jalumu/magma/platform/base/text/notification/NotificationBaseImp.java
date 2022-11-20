@@ -1,5 +1,6 @@
 package de.jalumu.magma.platform.base.text.notification;
 
+import de.jalumu.magma.text.notification.Notification;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -7,7 +8,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
-public abstract class NotificationBaseImp implements Notification{
+public abstract class NotificationBaseImp implements Notification {
 
     private Component text;
     private Sound sound;

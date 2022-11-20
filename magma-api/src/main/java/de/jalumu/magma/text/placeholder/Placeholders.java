@@ -1,4 +1,4 @@
-package de.jalumu.magma.platform.base.text.placeholder;
+package de.jalumu.magma.text.placeholder;
 
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
