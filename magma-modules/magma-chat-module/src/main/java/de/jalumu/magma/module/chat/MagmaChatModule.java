@@ -5,6 +5,8 @@ import de.jalumu.magma.module.chat.events.ChatEvents;
 import de.jalumu.magma.module.chat.events.ConnectionEvents;
 import de.jalumu.magma.module.BaseModule;
 import de.jalumu.magma.platform.MagmaPlatform;
+import de.jalumu.magma.platform.MagmaPlatformType;
+import de.jalumu.magma.platform.ServerImplementation;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,8 +18,9 @@ import java.io.File;
         version = "1.0",
         author = "Jalumu",
         description = "A chat module for Magma",
-        dependsPlugin = {"PlaceholderAPI"}
-)
+        supportedPlatforms = {MagmaPlatformType.STANDALONE},
+        supportedServerImplementations = {ServerImplementation.PAPER},
+        dependsPlugin = {"PlaceholderAPI"})
 public class MagmaChatModule extends BaseModule {
 
     @Override

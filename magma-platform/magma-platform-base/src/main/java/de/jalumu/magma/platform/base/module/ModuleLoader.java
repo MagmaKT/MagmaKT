@@ -5,6 +5,7 @@ import de.jalumu.magma.module.MagmaModule;
 import de.jalumu.magma.module.ModuleMeta;
 import de.jalumu.magma.platform.MagmaPlatform;
 import io.github.classgraph.ClassGraph;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -13,9 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Slf4j
+@Slf4j(topic = "MagmaKT-ModuleLoader")
 public abstract class ModuleLoader {
 
+    @Getter
     private MagmaPlatform platform;
 
     private final File moduleDirectory;
@@ -58,6 +60,14 @@ public abstract class ModuleLoader {
                     log.info("Found module " + meta.name() + " version:" + meta.version() + " by " + meta.author());
 
                     AtomicBoolean compatible = new AtomicBoolean(true);
+
+                    if (Arrays.stream(meta.supportedPlatforms()).noneMatch(supportedPlatform -> platform.getPlatformType().equals(supportedPlatform))) {
+                        compatible.set(false);
+                    }
+
+                    if (Arrays.stream(meta.supportedServerImplementations()).noneMatch(serverImplementation -> platform.getServerImplementation().equals(serverImplementation))) {
+                        compatible.set(false);
+                    }
 
                     Arrays.stream(meta.dependsPlugin()).forEach(plugin -> {
                         if (!isPlatformPluginAvailable(plugin)) {

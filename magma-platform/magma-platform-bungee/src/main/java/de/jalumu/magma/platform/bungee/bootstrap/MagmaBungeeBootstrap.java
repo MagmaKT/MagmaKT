@@ -1,18 +1,23 @@
 package de.jalumu.magma.platform.bungee.bootstrap;
 
 import de.jalumu.magma.annotation.bungee.platform.application.BungeecordPlugin;
-import de.jalumu.magma.module.ModuleLoader;
 import de.jalumu.magma.platform.MagmaPlatform;
 import de.jalumu.magma.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.ServerImplementation;
+import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
+import de.jalumu.magma.platform.bungee.module.BungeeModuleLoader;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
+
+import java.io.File;
 
 @BungeecordPlugin(name = "MagmaKT-Bungee", version = "0.0.1", description = "MagmaKT for Bungeecord", author = "JaLuMu", dependsPlugin = {})
 public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
 
     private BungeeAudiences adventure;
+
+    private ModuleLoader moduleLoader;
 
     public BungeeAudiences adventure() {
         if (this.adventure == null) {
@@ -24,7 +29,14 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
     @Override
     public void onEnable() {
         this.adventure = BungeeAudiences.create(this);
+
+        moduleLoader = new BungeeModuleLoader(this, new File(this.getDataFolder().toPath() + File.separator + "modules"));
+        moduleLoader.prepare();
+
         SplashScreen.splashScreen(this);
+
+        moduleLoader.loadModules();
+        moduleLoader.enableCompatibleModules();
 
     }
 

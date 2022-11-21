@@ -6,6 +6,7 @@ import de.jalumu.magma.module.tablist.handler.TablistHandler;
 import de.jalumu.magma.module.BaseModule;
 import de.jalumu.magma.platform.MagmaPlatform;
 import de.jalumu.magma.platform.MagmaPlatformType;
+import de.jalumu.magma.platform.ServerImplementation;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -18,7 +19,9 @@ import java.io.File;
         version = "1.0.0",
         author = "Jalumu",
         description = "A tablist module for Magma",
-        dependsPlugin = {"LuckPerms"}
+        dependsPlugin = {"LuckPerms"},
+        supportedPlatforms = {MagmaPlatformType.GAMESERVER},
+        supportedServerImplementations = {ServerImplementation.PAPER}
 )
 public class MagmaTablistModule extends BaseModule {
 
