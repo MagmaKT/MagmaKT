@@ -20,6 +20,11 @@ dependencies {
     api 'com.github.Exlll.ConfigLib:configlib-core:v4.2.0'
     implementation 'com.github.Exlll.ConfigLib:configlib-yaml:v4.2.0'
 
+    api 'io.github.classgraph:classgraph:4.8.150'
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }

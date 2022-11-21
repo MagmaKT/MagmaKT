@@ -1,4 +1,4 @@
-package de.jalumu.magma.platform.base.platform;
+package de.jalumu.magma.platform;
 
 public enum MagmaPlatformType {
 
