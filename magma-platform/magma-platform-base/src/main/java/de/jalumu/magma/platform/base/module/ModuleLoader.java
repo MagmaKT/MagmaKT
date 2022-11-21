@@ -78,7 +78,7 @@ public abstract class ModuleLoader {
                         modules.add(module);
                         log.info("Module " + meta.name() + " loaded");
                     } else {
-                        log.warn("Module " + meta.name() + " is not compatible with the current platform. Skipping...");
+                        log.warn("Module " + meta.name() + " is not compatible. Skipping...");
                     }
 
                 }
@@ -90,9 +90,24 @@ public abstract class ModuleLoader {
     }
 
     public void enableCompatibleModules() {
-        modules.stream().forEach(module -> {
-            module.onEnable();
-            log.info("Module " + module.getMeta().name() + " enabled");
+        modules.forEach(module -> {
+
+            AtomicBoolean compatible = new AtomicBoolean(true);
+
+            Arrays.stream(module.getMeta().dependsModule()).forEach(requiredModule -> {
+                if (modules.stream().noneMatch(magmaModule -> magmaModule.getMeta().name().equals(requiredModule))) {
+                    compatible.set(false);
+                    log.warn("Module " + module.getMeta().name() + " is missing module: " + requiredModule);
+                }
+            });
+
+            if (compatible.get()) {
+                module.onEnable();
+                log.info("Module " + module.getMeta().name() + " enabled");
+            } else {
+                log.warn("Module " + module.getMeta().name() + " is not compatible. Skipping...");
+            }
+
         });
     }
 
