@@ -84,6 +84,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
             this.adventure.close();
             this.adventure = null;
         }
+        moduleLoader.disableModules();
         mySQLManager.getDatabase().shutdown();
     }
 

@@ -26,6 +26,8 @@ public abstract class ModuleLoader {
 
     private Set<MagmaModule> modules;
 
+    private Set<MagmaModule> enabledModules;
+
     public ModuleLoader(MagmaPlatform platform, File moduleDirectory) {
         this.platform = platform;
         this.moduleDirectory = moduleDirectory;
@@ -48,6 +50,7 @@ public abstract class ModuleLoader {
             }
         });
         modules = new HashSet<>();
+        enabledModules = new HashSet<>();
     }
 
     public void loadModules() {
@@ -114,12 +117,21 @@ public abstract class ModuleLoader {
 
             if (compatible.get()) {
                 module.onEnable();
+                enabledModules.add(module);
                 log.info("Module " + module.getMeta().name() + " enabled");
             } else {
                 log.warning("Module " + module.getMeta().name() + " is not compatible. Skipping...");
             }
 
         });
+    }
+
+    public void disableModules() {
+        enabledModules.forEach(module -> {
+            module.onDisable();
+            log.info("Module " + module.getMeta().name() + " disabled");
+        });
+        enabledModules.clear();
     }
 
     protected abstract boolean isPlatformPluginAvailable(String plugin);

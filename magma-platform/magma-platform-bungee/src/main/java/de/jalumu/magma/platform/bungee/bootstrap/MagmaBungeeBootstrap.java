@@ -46,6 +46,7 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
             this.adventure.close();
             this.adventure = null;
         }
+        moduleLoader.disableModules();
     }
 
     @Override
