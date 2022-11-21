@@ -2,14 +2,12 @@ package de.jalumu.magma.platform.bukkit.database;
 
 import de.jalumu.magma.platform.base.database.mysql.MySQLDatabase;
 import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
-import de.jalumu.magma.platform.bukkit.module.RegisteredBukkitModule;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class BukkitMySQLManager {
 

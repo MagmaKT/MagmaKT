@@ -1,6 +1,6 @@
-package de.jalumu.magma.platform.base.platform;
+package de.jalumu.magma.platform;
 
-import de.jalumu.magma.platform.base.module.ModuleLoader;
+import de.jalumu.magma.module.ModuleLoader;
 
 import java.util.logging.Logger;
 
@@ -16,6 +16,5 @@ public interface MagmaPlatform {
 
     Object getMagmaPluginInstance();
 
-    ModuleLoader getModuleLoader();
 
 }

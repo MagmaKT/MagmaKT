@@ -1,12 +1,11 @@
 package de.jalumu.magma.platform.bungee.bootstrap;
 
 import de.jalumu.magma.annotation.bungee.platform.application.BungeecordPlugin;
-import de.jalumu.magma.platform.base.module.ModuleLoader;
-import de.jalumu.magma.platform.base.platform.MagmaPlatform;
-import de.jalumu.magma.platform.base.platform.MagmaPlatformType;
-import de.jalumu.magma.platform.base.platform.ServerImplementation;
+import de.jalumu.magma.module.ModuleLoader;
+import de.jalumu.magma.platform.MagmaPlatform;
+import de.jalumu.magma.platform.MagmaPlatformType;
+import de.jalumu.magma.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
-import de.jalumu.magma.platform.bungee.module.BungeeModuleLoader;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
 
@@ -14,8 +13,6 @@ import net.md_5.bungee.api.plugin.Plugin;
 public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
 
     private BungeeAudiences adventure;
-
-    private BungeeModuleLoader moduleLoader;
 
     public BungeeAudiences adventure() {
         if (this.adventure == null) {
@@ -28,7 +25,6 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
     public void onEnable() {
         this.adventure = BungeeAudiences.create(this);
         SplashScreen.splashScreen(this);
-        moduleLoader = new BungeeModuleLoader(this);
 
     }
 
@@ -75,8 +71,4 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
         return this;
     }
 
-    @Override
-    public ModuleLoader getModuleLoader() {
-        return null;
-    }
 }
