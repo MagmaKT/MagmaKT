@@ -6,7 +6,7 @@ import de.jalumu.magma.module.ModuleMeta;
 import de.jalumu.magma.platform.MagmaPlatform;
 import io.github.classgraph.ClassGraph;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 
 import java.io.File;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Slf4j(topic = "MagmaKT-ModuleLoader")
+@Log(topic = "MagmaKT-ModuleLoader")
 public abstract class ModuleLoader {
 
     @Getter
@@ -72,7 +72,7 @@ public abstract class ModuleLoader {
                     Arrays.stream(meta.dependsPlugin()).forEach(plugin -> {
                         if (!isPlatformPluginAvailable(plugin)) {
                             compatible.set(false);
-                            log.warn("Module " + meta.name() + " is missing plugin: " + plugin);
+                            log.warning("Module " + meta.name() + " is missing plugin: " + plugin);
                         }
                     });
 
@@ -81,6 +81,7 @@ public abstract class ModuleLoader {
                         module.setMeta(meta);
                         module.setPlatform(platform);
                         module.setDataFolder(new File(moduleDirectory, meta.name()));
+                        module.setLogger(new ModuleLogger(meta.name(), platform.getLogger()));
 
                         module.getDataFolder().mkdirs();
 
@@ -88,7 +89,7 @@ public abstract class ModuleLoader {
                         modules.add(module);
                         log.info("Module " + meta.name() + " loaded");
                     } else {
-                        log.warn("Module " + meta.name() + " is not compatible. Skipping...");
+                        log.warning("Module " + meta.name() + " is not compatible. Skipping...");
                     }
 
                 }
@@ -107,7 +108,7 @@ public abstract class ModuleLoader {
             Arrays.stream(module.getMeta().dependsModule()).forEach(requiredModule -> {
                 if (modules.stream().noneMatch(magmaModule -> magmaModule.getMeta().name().equals(requiredModule))) {
                     compatible.set(false);
-                    log.warn("Module " + module.getMeta().name() + " is missing module: " + requiredModule);
+                    log.warning("Module " + module.getMeta().name() + " is missing module: " + requiredModule);
                 }
             });
 
@@ -115,7 +116,7 @@ public abstract class ModuleLoader {
                 module.onEnable();
                 log.info("Module " + module.getMeta().name() + " enabled");
             } else {
-                log.warn("Module " + module.getMeta().name() + " is not compatible. Skipping...");
+                log.warning("Module " + module.getMeta().name() + " is not compatible. Skipping...");
             }
 
         });

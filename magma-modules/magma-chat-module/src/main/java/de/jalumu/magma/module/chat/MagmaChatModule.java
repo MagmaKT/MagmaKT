@@ -18,14 +18,14 @@ import java.io.File;
         version = "1.0",
         author = "Jalumu",
         description = "A chat module for Magma",
-        supportedPlatforms = {MagmaPlatformType.STANDALONE},
+        supportedPlatforms = {MagmaPlatformType.GAMESERVER},
         supportedServerImplementations = {ServerImplementation.PAPER},
         dependsPlugin = {"PlaceholderAPI"})
 public class MagmaChatModule extends BaseModule {
 
     @Override
     public void onEnable() {
-        getPlatform().getLogger().info("MagmaChatModule is enabled!");
+        getLogger().info("MagmaChatModule is enabled!");
         Bukkit.getPluginManager().registerEvents(new ChatEvents(this), (Plugin) getPlatform().getMagmaPluginInstance());
         Bukkit.getPluginManager().registerEvents(new ConnectionEvents(this), (Plugin) getPlatform().getMagmaPluginInstance());
     }

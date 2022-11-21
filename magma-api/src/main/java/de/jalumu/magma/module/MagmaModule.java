@@ -1,5 +1,7 @@
 package de.jalumu.magma.module;
 
+import java.util.logging.Logger;
+
 public interface MagmaModule {
 
     void onLoad();
@@ -8,5 +10,7 @@ public interface MagmaModule {
     void onUnload();
 
     ModuleMeta getMeta();
+
+    Logger getLogger();
     
 }

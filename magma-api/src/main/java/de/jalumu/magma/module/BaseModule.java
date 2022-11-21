@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +17,8 @@ public abstract class BaseModule implements MagmaModule {
 
     private MagmaPlatform platform;
     private File dataFolder;
+
+    private Logger logger;
 
     private ModuleMeta meta;
 
