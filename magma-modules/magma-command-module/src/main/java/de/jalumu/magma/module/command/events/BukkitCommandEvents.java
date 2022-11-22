@@ -1,11 +1,15 @@
 package de.jalumu.magma.module.command.events;
 
+import de.exlll.configlib.YamlConfigurations;
 import de.jalumu.magma.module.command.MagmaCommandModule;
+import de.jalumu.magma.module.command.config.MagmaCommandBukkitConfig;
 import de.jalumu.magma.text.notification.Notification;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.command.UnknownCommandEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerCommandSendEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,50 +17,52 @@ import java.util.List;
 
 public class BukkitCommandEvents implements org.bukkit.event.Listener {
 
-    private YamlConfiguration configuration;
+    private MagmaCommandBukkitConfig config;
 
     public BukkitCommandEvents(MagmaCommandModule module) {
-        File config = new File(module.getDataFolder(), "command.yml");
-        configuration = new YamlConfiguration();
+        Bukkit.getPluginManager().registerEvents(this, (JavaPlugin) module.getPlatform().getMagmaPluginInstance());
 
-        if (!config.exists()) {
+        File configFile = new File(module.getDataFolder(), "config.yml");
+
+        if (!configFile.exists()) {
             try {
-                config.createNewFile();
-            } catch (IOException e) {
+                configFile.createNewFile();
+                config = new MagmaCommandBukkitConfig();
+                YamlConfigurations.save(configFile.toPath(), MagmaCommandBukkitConfig.class, config);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-
-        try {
-            configuration.load(config);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidConfigurationException e) {
-            e.printStackTrace();
-        }
-
-        configuration.addDefault("command.whitelist.enabled", false);
-        configuration.addDefault("command.whitelist.whitelist", List.of("magma", "help"));
-        configuration.addDefault("command.msg.blocked", "You are not allowed to use this command!");
-
-        configuration.options().copyDefaults(true);
-
-        try {
-            configuration.save(config);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            try {
+                config = YamlConfigurations.load(configFile.toPath(), MagmaCommandBukkitConfig.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @EventHandler
     public void onPreProcess(PlayerCommandPreprocessEvent event) {
-        if (configuration.getBoolean("command.whitelist.enabled") && !event.getPlayer().hasPermission("magma.command.whitelist.bypass")) {
-            List<String> whitelist = configuration.getStringList("command.whitelist.whitelist");
+        if (config.isWhitelistEnabled() && !event.getPlayer().hasPermission("magma.command.whitelist.bypass")) {
+            List<String> whitelist = config.getAllowedCommands();
             if (!whitelist.contains(event.getMessage().split(" ")[0].replace("/", ""))) {
-                Notification.error(configuration.getString("command.msg.blocked")).send(event.getPlayer());
+                Notification.error(config.getCommandNotFoundMessage()).send(event.getPlayer());
                 event.setCancelled(true);
             }
         }
+    }
+
+    @EventHandler
+    public void onCommandSend(PlayerCommandSendEvent event) {
+        if (!event.getPlayer().hasPermission("magma.command.whitelist.bypass")) {
+            List<String> whitelist = config.getAllowedCommands();
+            event.getCommands().removeIf(command -> !whitelist.contains(command));
+        }
+    }
+
+    @EventHandler
+    public void onUnknownCommand(UnknownCommandEvent event) {
+        event.message(Notification.error(config.getCommandNotFoundMessage()).getNotificationText());
     }
 
 }
