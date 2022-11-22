@@ -18,7 +18,7 @@ dependencies {
 
     //Config
     api 'com.github.Exlll.ConfigLib:configlib-core:v4.2.0'
-    implementation 'com.github.Exlll.ConfigLib:configlib-yaml:v4.2.0'
+    api 'com.github.Exlll.ConfigLib:configlib-yaml:v4.2.0'
 
     api 'io.github.classgraph:classgraph:4.8.150'
 
