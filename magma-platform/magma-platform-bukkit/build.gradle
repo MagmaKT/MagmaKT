@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.20'
     compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
     api project(":magma-platform:magma-platform-base")
 
@@ -38,6 +39,9 @@ dependencies {
     compileOnly 'net.luckperms:api:5.4'
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.8.0";
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     // Annotations
     compileOnly project(":magma-annotations:magma-annotations-bukkit-platform")

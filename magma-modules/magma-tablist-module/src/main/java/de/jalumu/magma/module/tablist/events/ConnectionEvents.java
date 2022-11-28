@@ -2,6 +2,8 @@ package de.jalumu.magma.module.tablist.events;
 
 import de.jalumu.magma.module.tablist.MagmaTablistModule;
 import de.jalumu.magma.module.tablist.handler.TablistHandler;
+import de.jalumu.magma.player.FetchedPlayer;
+import de.jalumu.magma.player.Players;
 import de.jalumu.magma.text.placeholder.Placeholders;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
