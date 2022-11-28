@@ -8,6 +8,8 @@ import de.jalumu.magma.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
+import de.jalumu.magma.platform.bukkit.player.BukkitPlayerProvider;
+import de.jalumu.magma.player.PlayerProvider;
 import de.jalumu.magma.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.platform.bukkit.command.MagmaCommand;
 import de.jalumu.magma.platform.bukkit.database.BukkitMySQLManager;
@@ -63,6 +65,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         this.adventure = BukkitAudiences.create(this);
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
         PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
+        PlayerProvider.setProvider(new BukkitPlayerProvider(this));
 
         moduleLoader = new BukkitModuleLoader(this, new File(this.getDataFolder().toPath() + File.separator + "modules"));
         moduleLoader.prepare();

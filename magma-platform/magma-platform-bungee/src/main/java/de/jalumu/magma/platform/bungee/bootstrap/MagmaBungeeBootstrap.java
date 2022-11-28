@@ -7,6 +7,8 @@ import de.jalumu.magma.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.bungee.module.BungeeModuleLoader;
+import de.jalumu.magma.platform.bungee.player.BungeePlayerProvider;
+import de.jalumu.magma.player.PlayerProvider;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
 
@@ -29,6 +31,8 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
     @Override
     public void onEnable() {
         this.adventure = BungeeAudiences.create(this);
+
+        PlayerProvider.setProvider(new BungeePlayerProvider(this));
 
         moduleLoader = new BungeeModuleLoader(this, new File(this.getDataFolder().toPath() + File.separator + "modules"));
         moduleLoader.prepare();
