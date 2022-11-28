@@ -27,6 +27,10 @@ dependencies {
     // https://mvnrepository.com/artifact/com.mojang/authlib
     compileOnly 'com.mojang:authlib:3.11.50'
 
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    implementation 'com.google.guava:guava:31.1-jre'
+
+
     // https://mvnrepository.com/artifact/org.json/json
     api 'org.json:json:20220924'
 
