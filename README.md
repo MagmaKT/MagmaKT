@@ -15,17 +15,20 @@ MagmaKT is a framework for easy Minecraft plugin development. It allows running 
 - Can be easily integrated into existing plugins
 - Can be easily extended with modules
 
-## Intigrated Modules
-### MagmaCommandModule
-Supported Platforms: Paper, Waterfall
-#### Features
-- Block Tab Completion
-- Command Whitelist
-- Bypass permission: magma.command.whitelist.bypass
-## Where is MagmaKT used
-### Open-Source Plugins
+## Add MagmaKT to your project
+### Add MagmaKT via Jitpack
+Add the Jitpack maven repository
 
-### Minecraft Servers
+	allprojects {
+		repositories {
+			maven { url 'https://jitpack.io' }
+		}
+	}
+Add the dependency to your project
+
+	dependencies {
+	        implementation 'de.jalumu:MagmaKT:main-SNAPSHOT'
+	}
 
 ## MagmaKT Statistics
 ![bstats Metrics](https://bstats.org/signatures/bukkit/MagmaKt-Bukkit.svg)
