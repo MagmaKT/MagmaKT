@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
 
 group = getRootProject().group
@@ -21,6 +22,21 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+
+            pom {
+                name = 'MagmaKT-API'
+                description = 'MagmaKT-API'
+                url = 'https://github.com/JaLuMu/MagmaKT'
+            }
+
+            from components.java
+        }
+    }
 }
 
 test {

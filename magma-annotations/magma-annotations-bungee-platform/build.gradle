@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "org.jetbrains.kotlin.jvm"
+    id 'maven-publish'
 }
 
 group = getRootProject().group
@@ -15,6 +16,21 @@ dependencies {
     compileOnly 'net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+
+            pom {
+                name = 'MagmaKT-Bungee-Annotations'
+                description = 'Annotations for Bungeecord plugins'
+                url = 'https://github.com/JaLuMu/MagmaKT'
+            }
+
+            from components.java
+        }
+    }
 }
 
 test {
