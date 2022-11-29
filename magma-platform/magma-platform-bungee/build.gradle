@@ -3,6 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow'
     id "org.jetbrains.kotlin.jvm"
     id "org.jetbrains.kotlin.kapt"
+    id 'maven-publish'
 }
 
 group = getRootProject().group
@@ -34,6 +35,21 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+
+            pom {
+                name = 'MagmaKT-Bungee'
+                description = 'MagmaKT-Bungee'
+                url = 'https://github.com/JaLuMu/MagmaKT'
+            }
+
+            from components.java
+        }
+    }
 }
 
 shadowJar {

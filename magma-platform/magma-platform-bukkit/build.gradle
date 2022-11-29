@@ -3,6 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow'
     id "org.jetbrains.kotlin.jvm"
     id "org.jetbrains.kotlin.kapt"
+    id 'maven-publish'
 }
 
 group = getRootProject().group
@@ -47,6 +48,21 @@ dependencies {
     compileOnly project(":magma-annotations:magma-annotations-bukkit-platform")
     kapt project(":magma-annotations:magma-annotations-bukkit-platform")
 
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+
+            pom {
+                name = 'MagmaKT-Bukkit'
+                description = 'MagmaKT-Bukkit'
+                url = 'https://github.com/JaLuMu/MagmaKT'
+            }
+
+            from components.java
+        }
+    }
 }
 
 shadowJar {

@@ -1,6 +1,8 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.10'
     id 'java'
+    id 'java-library'
+    id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
@@ -29,8 +31,25 @@ allprojects {
 }
 
 dependencies {
-    implementation project(":magma-platform:magma-platform-bukkit")
-    implementation project(":magma-platform:magma-platform-bungee")
+    api project(":magma-annotations:magma-annotations-bukkit-platform")
+    api project(":magma-annotations:magma-annotations-bungee-platform")
+    api project(":magma-platform:magma-platform-bukkit")
+    api project(":magma-platform:magma-platform-bungee")
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+
+            pom {
+                name = 'MagmaKT'
+                description = 'MagmaKT'
+                url = 'https://github.com/JaLuMu/MagmaKT'
+            }
+
+            from components.java
+        }
+    }
 }
 
 shadowJar {
