@@ -7,6 +7,7 @@ import de.jalumu.magma.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
+import de.jalumu.magma.platform.bukkit.command.MagmaBukkitCommandAnnotationReplacer;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
 import de.jalumu.magma.platform.bukkit.player.BukkitPlayerProvider;
 import de.jalumu.magma.player.PlayerProvider;
@@ -22,6 +23,8 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import revxrsal.commands.CommandHandler;
+import revxrsal.commands.bukkit.BukkitCommandHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +42,8 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     private Permission perms = null;
 
     private BukkitMySQLManager mySQLManager;
+
+    private CommandHandler commandHandler;
 
     public BukkitAudiences adventure() {
         if (this.adventure == null) {
@@ -66,6 +71,9 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
         PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
         PlayerProvider.setProvider(new BukkitPlayerProvider(this));
+
+        commandHandler = BukkitCommandHandler.create(this);
+        commandHandler.registerAnnotationReplacer(de.jalumu.magma.command.MagmaCommand.class, new MagmaBukkitCommandAnnotationReplacer());
 
         moduleLoader = new BukkitModuleLoader(this, new File(this.getDataFolder().toPath() + File.separator + "modules"));
         moduleLoader.prepare();
@@ -114,6 +122,11 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public String getPlatformVersion() {
         return getServer().getVersion();
+    }
+
+    @Override
+    public CommandHandler getCommandHandler() {
+        return commandHandler;
     }
 
     @Override

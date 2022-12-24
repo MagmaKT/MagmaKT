@@ -1,6 +1,7 @@
 package de.jalumu.magma.platform;
 
 import de.jalumu.magma.module.ModuleLoader;
+import revxrsal.commands.CommandHandler;
 
 import java.util.logging.Logger;
 
@@ -13,6 +14,8 @@ public interface MagmaPlatform {
     String getPlatformName();
     String getPlatformVersion();
     Logger getLogger();
+
+    CommandHandler getCommandHandler();
 
     Object getMagmaPluginInstance();
 

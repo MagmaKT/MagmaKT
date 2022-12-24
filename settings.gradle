@@ -29,4 +29,6 @@ findProject(':magma-modules:magma-tablist-module')?.name = 'magma-tablist-module
 include 'magma-modules:magma-command-module'
 findProject(':magma-modules:magma-command-module')?.name = 'magma-command-module'
 include 'magma-api'
+include 'magma-modules:magma-dev-module'
+findProject(':magma-modules:magma-dev-module')?.name = 'magma-dev-module'
 

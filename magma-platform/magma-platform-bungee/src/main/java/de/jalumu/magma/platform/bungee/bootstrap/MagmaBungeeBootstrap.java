@@ -11,6 +11,7 @@ import de.jalumu.magma.platform.bungee.player.BungeePlayerProvider;
 import de.jalumu.magma.player.PlayerProvider;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
+import revxrsal.commands.CommandHandler;
 
 import java.io.File;
 
@@ -81,6 +82,11 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
     @Override
     public String getPlatformVersion() {
         return getProxy().getVersion();
+    }
+
+    @Override
+    public CommandHandler getCommandHandler() {
+        return null;
     }
 
     @Override

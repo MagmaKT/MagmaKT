@@ -17,6 +17,13 @@ dependencies {
     api "net.kyori:adventure-text-minimessage:4.11.0"
     api "net.kyori:adventure-text-serializer-legacy:4.11.0"
 
+    //Config
+    api 'com.github.Exlll.ConfigLib:configlib-core:v4.2.0'
+    api 'com.github.Exlll.ConfigLib:configlib-yaml:v4.2.0'
+
+    //Command
+    api 'com.github.Revxrsal.Lamp:common:3.1.1'
+
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
