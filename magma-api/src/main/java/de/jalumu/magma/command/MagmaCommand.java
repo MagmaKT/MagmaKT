@@ -11,7 +11,7 @@ public @interface MagmaCommand {
 
     String[] command();
 
-    String description();
+    String description() default "A Magma Command";
 
     String usage();
 
