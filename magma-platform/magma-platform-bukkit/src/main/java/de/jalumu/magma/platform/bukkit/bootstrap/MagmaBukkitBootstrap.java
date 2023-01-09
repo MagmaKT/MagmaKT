@@ -1,7 +1,10 @@
 package de.jalumu.magma.platform.bukkit.bootstrap;
 
+import de.exlll.configlib.YamlConfigurations;
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
-import de.jalumu.magma.module.MagmaModule;
+import de.jalumu.magma.platform.base.text.TextHandler;
+import de.jalumu.magma.text.Text;
+import de.jalumu.magma.util.sandbox.Sandbox;
 import de.jalumu.magma.platform.MagmaPlatform;
 import de.jalumu.magma.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.ServerImplementation;
@@ -18,6 +21,7 @@ import de.jalumu.magma.platform.bukkit.text.BukkitNotificationProvider;
 import de.jalumu.magma.platform.bukkit.text.placeholder.BukkitPlaceholderProvider;
 import de.jalumu.magma.text.notification.NotificationProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.text.Component;
 import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -30,7 +34,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
 
 @BukkitPlugin(name = "MagmaKT-Bukkit", version = "Dev-Build", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"ProtocolLib", "Vault", "LuckPerms"})
 public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {

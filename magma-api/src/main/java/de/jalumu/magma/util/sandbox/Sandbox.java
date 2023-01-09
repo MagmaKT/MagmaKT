@@ -1,4 +1,4 @@
-package de.jalumu.magma.module.dev.sandbox;
+package de.jalumu.magma.util.sandbox;
 
 import de.jalumu.magma.platform.MagmaPlatform;
 import de.jalumu.magma.player.MagmaPlayer;

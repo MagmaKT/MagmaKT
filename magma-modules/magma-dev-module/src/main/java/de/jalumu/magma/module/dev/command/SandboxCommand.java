@@ -1,7 +1,7 @@
 package de.jalumu.magma.module.dev.command;
 
 import de.jalumu.magma.command.MagmaCommand;
-import de.jalumu.magma.module.dev.sandbox.Sandbox;
+import de.jalumu.magma.util.sandbox.Sandbox;
 import de.jalumu.magma.platform.MagmaPlatform;
 import de.jalumu.magma.player.Players;
 import lombok.AllArgsConstructor;
