@@ -26,12 +26,8 @@ repositories {
 
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
-    compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
     api project(":magma-platform:magma-platform-base")
-
-    compileOnly project(":magma-modules:magma-dev-module")
-    //implementation project(":magma-modules:magma-tablist-module")
-    //implementation project(":magma-modules:magma-command-module")
 
     //Command
     implementation 'com.github.Revxrsal.Lamp:bukkit:3.1.1'
