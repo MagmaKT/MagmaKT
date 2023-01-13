@@ -2,6 +2,7 @@ package de.jalumu.magma.platform.bukkit.bootstrap;
 
 import de.exlll.configlib.YamlConfigurations;
 import de.jalumu.magma.annotation.bukkit.platform.application.BukkitPlugin;
+import de.jalumu.magma.platform.base.config.ServerIdConfig;
 import de.jalumu.magma.platform.base.text.TextHandler;
 import de.jalumu.magma.text.Text;
 import de.jalumu.magma.util.sandbox.Sandbox;
@@ -48,6 +49,8 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     private CommandHandler commandHandler;
 
+    private ServerIdConfig serverIdConfig;
+
     public BukkitAudiences adventure() {
         if (this.adventure == null) {
             throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
@@ -69,6 +72,15 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
         Metrics metrics = new Metrics(this, 16417);
 
         setupPermissions();
+
+        File serverIdFile = new File(getDataFolder(), "serverID.yml");
+
+        if (serverIdFile.exists()) {
+            serverIdConfig = YamlConfigurations.load(serverIdFile.toPath(), ServerIdConfig.class);
+        } else {
+            serverIdConfig = new ServerIdConfig("Unknown");
+            YamlConfigurations.save(serverIdFile.toPath(), ServerIdConfig.class, serverIdConfig);
+        }
 
         this.adventure = BukkitAudiences.create(this);
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
@@ -125,6 +137,11 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     @Override
     public String getPlatformVersion() {
         return getServer().getVersion();
+    }
+
+    @Override
+    public String getServerID() {
+        return serverIdConfig.getServerID();
     }
 
     @Override

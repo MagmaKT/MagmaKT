@@ -22,7 +22,8 @@ public class SplashScreen {
         logger.info("-------------------------------------------------------------------------------------");
         logger.info("");
         logger.info(platform.getName() + " (" + platform.getVersion() + ")");
-        logger.info("Server: " + platform.getPlatformName() + " (" + platform.getPlatformVersion() + ")");
+        logger.info("Server implementation: " + platform.getPlatformName() + " (" + platform.getPlatformVersion() + ")");
+        logger.info("Server ID: " + platform.getServerID());
         logger.info("Type: " + platform.getPlatformType());
         logger.info("");
         logger.info("-------------------------------------------------------------------------------------");

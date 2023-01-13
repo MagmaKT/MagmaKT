@@ -13,6 +13,7 @@ public interface MagmaPlatform {
     ServerImplementation getServerImplementation();
     String getPlatformName();
     String getPlatformVersion();
+    String getServerID();
     Logger getLogger();
 
     CommandHandler getCommandHandler();
