@@ -20,6 +20,7 @@ dependencies {
 
     // External dependencies
     implementation "net.kyori:adventure-platform-bungeecord:4.1.1"
+    api "dev.triumphteam:triumph-gui:3.1.2"
 
 
     //implementation project(":magma-modules:magma-command-module")

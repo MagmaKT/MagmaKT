@@ -3,6 +3,7 @@ package de.jalumu.magma.platform.bungee.bootstrap;
 import de.exlll.configlib.YamlConfigurations;
 import de.jalumu.magma.annotation.bungee.platform.application.BungeecordPlugin;
 import de.jalumu.magma.platform.MagmaPlatform;
+import de.jalumu.magma.platform.MagmaPlatformProvider;
 import de.jalumu.magma.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.config.ServerIdConfig;
@@ -26,11 +27,18 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
 
     private ServerIdConfig serverIdConfig;
 
+    private String serverID;
+
     public BungeeAudiences adventure() {
         if (this.adventure == null) {
             throw new IllegalStateException("Cannot retrieve audience provider while plugin is not enabled");
         }
         return this.adventure;
+    }
+
+    @Override
+    public void onLoad() {
+        MagmaPlatformProvider.setPlatform(this);
     }
 
     @Override
@@ -46,15 +54,17 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
             YamlConfigurations.save(serverIdFile.toPath(), ServerIdConfig.class, serverIdConfig);
         }
 
+        serverID = serverIdConfig.getServerID();
+
         PlayerProvider.setProvider(new BungeePlayerProvider(this));
 
         moduleLoader = new BungeeModuleLoader(this, new File(this.getDataFolder().toPath() + File.separator + "modules"));
         moduleLoader.prepare();
 
-        SplashScreen.splashScreen(this);
-
         moduleLoader.loadModules();
         moduleLoader.enableCompatibleModules();
+
+        SplashScreen.splashScreen(this);
 
     }
 
@@ -99,7 +109,12 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
 
     @Override
     public String getServerID() {
-        return serverIdConfig.getServerID();
+        return serverID;
+    }
+
+    @Override
+    public void setServerID(String serverID) {
+        this.serverID = serverID;
     }
 
     @Override

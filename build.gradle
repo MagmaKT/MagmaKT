@@ -27,6 +27,10 @@ allprojects {
             name = 'dmulloy2'
             url = "https://repo.dmulloy2.net/repository/public/"
         }
+        maven {
+            name = "SimpleCloud"
+            url = "https://repo.thesimplecloud.eu/artifactory/gradle-release-local/"
+        }
     }
 }
 

@@ -11,7 +11,7 @@ annotation class BukkitPlugin(
     val loadOn: BukkitApplicationStartProperty = BukkitApplicationStartProperty.POSTWORLD,
     val author: String = "Unknown",
     val authors: Array<String> = [],
-    val dependsPlugin: Array<String> = ["Magma-Bukkit"],
+    val dependsPlugin: Array<String> = ["MagmaKT-Bukkit"],
     val softDependsPlugin: Array<String> = [],
     val loadBeforePlugin: Array<String> = [],
 
