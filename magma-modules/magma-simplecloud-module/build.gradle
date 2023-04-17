@@ -15,10 +15,10 @@ dependencies {
 
     compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
 
-    compileOnly 'com.github.Revxrsal.Lamp:bukkit:3.1.1'
-
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    compileOnly(group: 'eu.thesimplecloud.simplecloud', name: 'simplecloud-plugin', version: '2.4.1')
 
     compileOnly project(":magma-api")
 

@@ -13,7 +13,7 @@ repositories {
 dependencies {
 
     compileOnly project(":magma-platform:magma-platform-base")
-    compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly "com.github.MilkBowl:VaultAPI:1.7"
     compileOnly 'net.luckperms:api:5.4'
     compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.8.0";

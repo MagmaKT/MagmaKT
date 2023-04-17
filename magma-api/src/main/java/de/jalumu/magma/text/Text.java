@@ -1,33 +1,42 @@
 package de.jalumu.magma.text;
 
-import de.exlll.configlib.Comment;
-import de.exlll.configlib.Configuration;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import net.kyori.adventure.text.Component;
 
-import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
-@Configuration
-@RequiredArgsConstructor
-@AllArgsConstructor
-@Getter
-public class Text {
+public interface Text {
 
-    @Comment("Default / Fallback Text")
-    private @NonNull String text;
-
-    @Comment("Mapping of all other Languages")
-    private HashMap<String, String> translations = new HashMap<>();
-
-    public Text addTranslation(String langCode, String text) {
-        translations.put(langCode, text);
-        return this;
+    static Text text(String text) {
+        return TextProvider.getProvider().text(text);
     }
 
-    public String getTranslation(String langCode) {
-        return translations.getOrDefault(langCode, text);
-    }
+    Text setText(String text);
+
+    Text addTranslation(Locale language, String text);
+
+    boolean parseColorCodes();
+
+    Text parseColorCodes(boolean b);
+
+    Text parsePlaceholders(boolean b);
+
+    boolean parsePlaceholders();
+
+    Text allowMiddleware(boolean b);
+
+    boolean allowMiddleware();
+
+    String getDefaultText();
+
+    String getTranslation(Locale language);
+
+    String getTranslationOrDefault(Locale language);
+
+    Component getDefaultComponent();
+
+    Component getTranslatedComponent(Locale language);
+
+    Map<Locale,String> getTranslations();
 
 }

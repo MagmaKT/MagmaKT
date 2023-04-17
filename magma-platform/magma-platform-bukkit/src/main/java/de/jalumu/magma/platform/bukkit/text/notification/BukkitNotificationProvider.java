@@ -1,4 +1,4 @@
-package de.jalumu.magma.platform.bukkit.text;
+package de.jalumu.magma.platform.bukkit.text.notification;
 
 import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
 import de.jalumu.magma.text.notification.Notification;
