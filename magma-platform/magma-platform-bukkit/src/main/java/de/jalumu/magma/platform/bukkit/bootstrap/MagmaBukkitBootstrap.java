@@ -109,16 +109,6 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
         mySQLManager = new BukkitMySQLManager(this);
 
-        Sandbox.register("TextTest", (player, platform) -> {
-            Text text = Text.text("This is an english text").addTranslation(Locale.GERMANY, "Das ist ein deutscher Text");
-            player.getAudience().sendMessage(text.getTranslatedComponent(Bukkit.getPlayer(player.getUniqueId()).locale()));
-            File langfile = new File(getDataFolder(), "langtest.yml");
-            Text text1 = Text.text("Test 1");
-            Text text2 = Text.text("Test 2").addTranslation(Locale.GERMANY, "Deutschland").addTranslation(Locale.FRANCE, "Auch Deutschland");
-            TestConfig testConfig = new TestConfig(text1, text2);
-            YamlConfigurations.save(langfile.toPath(), TestConfig.class, testConfig, configurationProperties);
-        });
-
     }
 
     @Override
