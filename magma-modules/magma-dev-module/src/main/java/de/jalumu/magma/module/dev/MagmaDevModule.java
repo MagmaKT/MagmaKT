@@ -6,7 +6,6 @@ import de.jalumu.magma.module.dev.command.SandboxCommand;
 import de.jalumu.magma.util.sandbox.Sandbox;
 import de.jalumu.magma.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.ServerImplementation;
-import net.kyori.adventure.text.Component;
 
 @ModuleMeta(
         name = "MagmaDevModule",
