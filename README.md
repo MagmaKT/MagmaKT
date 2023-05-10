@@ -7,13 +7,16 @@
 **MagmaKT is still in development and currently not suitable for productive servers!**
 
 ## What is MagmaKT?
-MagmaKT is a framework for easy Minecraft plugin development. It allows running a plugin with a single codebase on multiple Minecraft servers and proxies. It can be easily extended with internal, but also external modules. Most modules can be used on multiple platforms without changing the plugin's code.
+MagmaKT is a Minecraft plugin framework to simplify the rapid development of plugins. MagmaKT contains a unified and cross-platform api for config files, commands, gui's and many more. The API can be connected to other systems through modules without having to change a single line of code in the developed plugins.
 
-## Main Features
-- Runs on Bukkit and Bungeecord (Velocity and Sponge support will be added later)
-- One API, Multiple Platforms Supported
-- Can be easily integrated into existing plugins
-- Can be easily extended with modules
+## Various ways to use modules
+A module can help to quickly add features that almost every plugin needs e.g. chat system, tablist, scoreboard. Modules can also be used to connect other platforms like cloud systems to the MagmaKT api.
+
+## Currently supported platforms
+Currently MagmaKT is compatible with Paper Servers and Bungeecord. Velocity and Sponge support will also be added later. Not all features are available for all platforms yet. But it is being worked on
+
+## Minecraft servers that use MagmaKT
+### Keeeks.de (Currently under development)
 
 ## Add MagmaKT to your project
 ### Add MagmaKT via Jitpack
