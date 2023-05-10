@@ -30,7 +30,7 @@ dependencies {
     api project(":magma-platform:magma-platform-base")
 
     //Command
-    implementation 'com.github.Revxrsal.Lamp:bukkit:3.1.1'
+    api 'com.github.Revxrsal.Lamp:bukkit:3.1.1'
 
     //Config
     api 'com.github.Exlll.ConfigLib:configlib-paper:v4.2.0'
