@@ -1,4 +1,5 @@
 ![bstats Metrics](assets/MagmaKT.png)
+![Modrinth Downloads](https://img.shields.io/modrinth/dt/3S1QCggp?style=for-the-badge)
 ![bStats Servers](https://img.shields.io/bstats/servers/16417?style=for-the-badge)
 ![bStats Players](https://img.shields.io/bstats/players/16417?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/JaLuMu/MagmaKT?style=for-the-badge)
