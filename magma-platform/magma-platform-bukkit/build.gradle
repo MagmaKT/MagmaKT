@@ -65,17 +65,6 @@ publishing {
     }
 
     publications {
-        maven(MavenPublication) {
-
-            pom {
-                name = 'MagmaKT-Bukkit'
-                description = 'MagmaKT-Bukkit'
-                url = 'https://github.com/JaLuMu/MagmaKT'
-            }
-
-            from components.java
-        }
-
         gpr(MavenPublication) {
             from(components.java)
         }

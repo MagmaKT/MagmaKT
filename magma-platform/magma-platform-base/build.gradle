@@ -52,17 +52,6 @@ publishing {
     }
 
     publications {
-        maven(MavenPublication) {
-
-            pom {
-                name = 'MagmaKT-Base'
-                description = 'MagmaKT-Base'
-                url = 'https://github.com/JaLuMu/MagmaKT'
-            }
-
-            from components.java
-        }
-
         gpr(MavenPublication) {
             from(components.java)
         }

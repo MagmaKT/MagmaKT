@@ -52,17 +52,6 @@ publishing {
     }
 
     publications {
-        maven(MavenPublication) {
-
-            pom {
-                name = 'MagmaKT-Bungee'
-                description = 'MagmaKT-Bungee'
-                url = 'https://github.com/JaLuMu/MagmaKT'
-            }
-
-            from components.java
-        }
-
         gpr(MavenPublication) {
             from(components.java)
         }
