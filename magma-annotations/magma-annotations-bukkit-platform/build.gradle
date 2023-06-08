@@ -7,21 +7,24 @@ plugins {
 group = getRootProject().group
 version = getRootProject().version
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-
-            pom {
-                name = 'MagmaKT-Bukkit-Annotations'
-                description = 'Annotations for Bukkit plugins'
-                url = 'https://github.com/JaLuMu/MagmaKT'
-            }
-
-            from components.java
-        }
-    }
-}
-
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/JaLuMu/MagmaKT")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }

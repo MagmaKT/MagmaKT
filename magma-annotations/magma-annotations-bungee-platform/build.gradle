@@ -12,16 +12,19 @@ dependencies {
 }
 
 publishing {
-    publications {
-        maven(MavenPublication) {
-
-            pom {
-                name = 'MagmaKT-Bungee-Annotations'
-                description = 'Annotations for Bungeecord plugins'
-                url = 'https://github.com/JaLuMu/MagmaKT'
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/JaLuMu/MagmaKT")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
-
-            from components.java
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
