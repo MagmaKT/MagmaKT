@@ -3,6 +3,8 @@ package de.jalumu.magma.platform.bungee.application;
 import de.exlll.configlib.YamlConfigurationProperties;
 import de.jalumu.magma.platform.base.application.MagmaApplicationBase;
 import de.jalumu.magma.platform.bungee.command.MagmaBungeeCommandAnnotationReplacer;
+import de.jalumu.magma.platform.bungee.text.notification.BungeeNotificationProvider;
+import de.jalumu.magma.text.notification.NotificationProvider;
 import net.md_5.bungee.api.plugin.Plugin;
 import revxrsal.commands.CommandHandler;
 import revxrsal.commands.bungee.BungeeCommandHandler;
@@ -33,6 +35,7 @@ public abstract class BungeeApplication extends Plugin implements MagmaApplicati
 
         commandHandler = BungeeCommandHandler.create(this);
         commandHandler.registerAnnotationReplacer(de.jalumu.magma.command.MagmaCommand.class, new MagmaBungeeCommandAnnotationReplacer());
+
         start();
     }
 

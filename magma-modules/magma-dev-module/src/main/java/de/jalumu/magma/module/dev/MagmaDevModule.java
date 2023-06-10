@@ -12,8 +12,8 @@ import de.jalumu.magma.platform.ServerImplementation;
         version = "1.0",
         author = "Jalumu",
         description = "Developer tools for Magma",
-        supportedPlatforms = MagmaPlatformType.GAMESERVER,
-        supportedServerImplementations = ServerImplementation.PAPER
+        supportedPlatforms = {MagmaPlatformType.GAMESERVER,MagmaPlatformType.PROXY},
+        supportedServerImplementations = {ServerImplementation.PAPER,ServerImplementation.BUNGEECORD}
 )
 public class MagmaDevModule extends BaseModule {
 
