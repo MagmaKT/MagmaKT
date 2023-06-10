@@ -19,6 +19,7 @@ import de.jalumu.magma.platform.bukkit.text.BukkitTextProvider;
 import de.jalumu.magma.player.PlayerProvider;
 import de.jalumu.magma.text.Text;
 import de.jalumu.magma.text.TextProvider;
+import de.jalumu.magma.text.notification.Notification;
 import de.jalumu.magma.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.platform.bukkit.command.MagmaCommand;
 import de.jalumu.magma.platform.bukkit.database.BukkitMySQLManager;

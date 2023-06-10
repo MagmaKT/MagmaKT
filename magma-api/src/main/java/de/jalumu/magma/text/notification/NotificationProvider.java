@@ -1,5 +1,7 @@
 package de.jalumu.magma.text.notification;
 
+import net.kyori.adventure.sound.Sound;
+
 public abstract class NotificationProvider {
 
     private static NotificationProvider notificationProvider = null;
@@ -17,6 +19,7 @@ public abstract class NotificationProvider {
     protected abstract Notification getSuccess();
     protected abstract Notification getWarning();
     protected abstract Notification getError();
+    protected abstract Notification getRaw(String template, String key);
 
 
 }

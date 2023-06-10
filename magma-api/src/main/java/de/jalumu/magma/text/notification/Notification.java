@@ -47,6 +47,10 @@ public interface Notification {
         return NotificationProvider.getProvider().getError().setNotificationText(text);
     }
 
+    static Notification raw(String template,String key){
+        return NotificationProvider.getProvider().getRaw(template,key);
+    }
+
     Component getNotificationText();
     Notification setNotificationText(Component component);
     Notification setNotificationText(String text);

@@ -9,17 +9,27 @@ import de.jalumu.magma.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.config.ServerIdConfig;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
+import de.jalumu.magma.platform.bungee.application.BungeeApplication;
 import de.jalumu.magma.platform.bungee.module.BungeeModuleLoader;
 import de.jalumu.magma.platform.bungee.player.BungeePlayerProvider;
+import de.jalumu.magma.platform.bungee.text.BungeeTextProvider;
+import de.jalumu.magma.platform.bungee.text.notification.BungeeNotificationProvider;
+import de.jalumu.magma.platform.bungee.text.placeholder.BungeePlaceholderProvider;
 import de.jalumu.magma.player.PlayerProvider;
+import de.jalumu.magma.text.TextProvider;
+import de.jalumu.magma.text.notification.Notification;
+import de.jalumu.magma.text.notification.NotificationProvider;
+import de.jalumu.magma.text.placeholder.PlaceholderProvider;
+import de.jalumu.magma.util.sandbox.Sandbox;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
 import revxrsal.commands.CommandHandler;
+import revxrsal.commands.bungee.BungeeCommandHandler;
 
 import java.io.File;
 
 @BungeecordPlugin(name = "MagmaKT-Bungee", version = "0.0.1", description = "MagmaKT for Bungeecord", author = "JaLuMu", dependsPlugin = {})
-public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
+public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlatform {
 
     private BungeeAudiences adventure;
 
@@ -37,12 +47,12 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
     }
 
     @Override
-    public void onLoad() {
+    public void initialize() {
         MagmaPlatformProvider.setPlatform(this);
     }
 
     @Override
-    public void onEnable() {
+    public void start() {
         this.adventure = BungeeAudiences.create(this);
 
         File serverIdFile = new File(getDataFolder(), "serverID.yml");
@@ -58,6 +68,12 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
 
         PlayerProvider.setProvider(new BungeePlayerProvider(this));
 
+        TextProvider.setTextProvider(new BungeeTextProvider());
+        BungeeNotificationProvider notificationProvider = new BungeeNotificationProvider(this);
+        NotificationProvider.setProvider(notificationProvider);
+        notificationProvider.init();
+        PlaceholderProvider.setProvider(new BungeePlaceholderProvider());
+
         moduleLoader = new BungeeModuleLoader(this, new File(this.getDataFolder().toPath() + File.separator + "modules"));
         moduleLoader.prepare();
 
@@ -69,7 +85,7 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
     }
 
     @Override
-    public void onDisable() {
+    public void shutdown() {
         if (this.adventure != null) {
             this.adventure.close();
             this.adventure = null;
@@ -115,11 +131,6 @@ public class MagmaBungeeBootstrap extends Plugin implements MagmaPlatform {
     @Override
     public void setServerID(String serverID) {
         this.serverID = serverID;
-    }
-
-    @Override
-    public CommandHandler getCommandHandler() {
-        return null;
     }
 
     @Override

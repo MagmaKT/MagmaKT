@@ -109,4 +109,12 @@ public class BukkitNotificationProvider extends NotificationProvider {
         notification.setDefaultSound(sound);
         return notification;
     }
+
+    @Override
+    protected Notification getRaw(String template, String key) {
+        BukkitNotification notification = new BukkitNotification();
+        notification.setNotificationTemplate(template);
+        notification.setDefaultSound(key);
+        return notification;
+    }
 }
