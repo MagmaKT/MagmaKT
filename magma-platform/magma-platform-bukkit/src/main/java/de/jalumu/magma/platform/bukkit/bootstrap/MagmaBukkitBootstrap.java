@@ -110,11 +110,6 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
         mySQLManager = new BukkitMySQLManager(this);
 
-        Sandbox.register("BTest", (player, platform) -> {
-            Notification.info("It Workz").send(player.getAudience());
-        });
-
-
     }
 
     @Override

@@ -78,9 +78,7 @@ public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlat
         moduleLoader.enableCompatibleModules();
 
         SplashScreen.splashScreen(this);
-
-        Sandbox.register("Test",(player, platform) -> Notification.info("Test").send(player.getAudience()));
-
+        
     }
 
     @Override
