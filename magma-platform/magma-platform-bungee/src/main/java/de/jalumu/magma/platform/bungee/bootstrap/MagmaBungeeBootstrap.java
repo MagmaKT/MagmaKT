@@ -14,10 +14,12 @@ import de.jalumu.magma.platform.bungee.module.BungeeModuleLoader;
 import de.jalumu.magma.platform.bungee.player.BungeePlayerProvider;
 import de.jalumu.magma.platform.bungee.text.BungeeTextProvider;
 import de.jalumu.magma.platform.bungee.text.notification.BungeeNotificationProvider;
+import de.jalumu.magma.platform.bungee.text.placeholder.BungeePlaceholderProvider;
 import de.jalumu.magma.player.PlayerProvider;
 import de.jalumu.magma.text.TextProvider;
 import de.jalumu.magma.text.notification.Notification;
 import de.jalumu.magma.text.notification.NotificationProvider;
+import de.jalumu.magma.text.placeholder.PlaceholderProvider;
 import de.jalumu.magma.util.sandbox.Sandbox;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -70,6 +72,7 @@ public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlat
         BungeeNotificationProvider notificationProvider = new BungeeNotificationProvider(this);
         NotificationProvider.setProvider(notificationProvider);
         notificationProvider.init();
+        PlaceholderProvider.setProvider(new BungeePlaceholderProvider());
 
         moduleLoader = new BungeeModuleLoader(this, new File(this.getDataFolder().toPath() + File.separator + "modules"));
         moduleLoader.prepare();
@@ -78,7 +81,7 @@ public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlat
         moduleLoader.enableCompatibleModules();
 
         SplashScreen.splashScreen(this);
-        
+
     }
 
     @Override
