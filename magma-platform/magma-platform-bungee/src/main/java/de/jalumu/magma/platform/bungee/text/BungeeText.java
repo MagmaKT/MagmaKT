@@ -1,4 +1,7 @@
 package de.jalumu.magma.platform.bungee.text;
 
-public class BungeeText {
+import de.jalumu.magma.platform.base.text.TextBaseImp;
+
+public class BungeeText extends TextBaseImp {
+
 }

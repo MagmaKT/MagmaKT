@@ -12,8 +12,10 @@ import de.jalumu.magma.platform.base.platform.util.SplashScreen;
 import de.jalumu.magma.platform.bungee.application.BungeeApplication;
 import de.jalumu.magma.platform.bungee.module.BungeeModuleLoader;
 import de.jalumu.magma.platform.bungee.player.BungeePlayerProvider;
+import de.jalumu.magma.platform.bungee.text.BungeeTextProvider;
 import de.jalumu.magma.platform.bungee.text.notification.BungeeNotificationProvider;
 import de.jalumu.magma.player.PlayerProvider;
+import de.jalumu.magma.text.TextProvider;
 import de.jalumu.magma.text.notification.Notification;
 import de.jalumu.magma.text.notification.NotificationProvider;
 import de.jalumu.magma.util.sandbox.Sandbox;
@@ -64,6 +66,7 @@ public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlat
 
         PlayerProvider.setProvider(new BungeePlayerProvider(this));
 
+        TextProvider.setTextProvider(new BungeeTextProvider());
         BungeeNotificationProvider notificationProvider = new BungeeNotificationProvider(this);
         NotificationProvider.setProvider(notificationProvider);
         notificationProvider.init();
