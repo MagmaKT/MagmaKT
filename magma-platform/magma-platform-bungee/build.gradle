@@ -29,7 +29,7 @@ dependencies {
     api 'com.github.Revxrsal.Lamp:bungee:3.1.1'
 
     //Config
-    implementation 'com.github.Exlll.ConfigLib:configlib-waterfall:v4.2.0'
+    implementation 'de.exlll:configlib-waterfall:4.2.0'
 
 
     // Annotations
