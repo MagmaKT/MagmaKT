@@ -43,8 +43,6 @@ import java.util.Locale;
 @BukkitPlugin(name = "MagmaKT-Bukkit", version = "Dev-Build", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"ProtocolLib", "LuckPerms"})
 public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
-    private BukkitAudiences adventure;
-
     private ModuleLoader moduleLoader;
 
     private BukkitMySQLManager mySQLManager;
@@ -54,13 +52,6 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     private ServerIdConfig serverIdConfig;
 
     private String serverID;
-
-    public BukkitAudiences adventure() {
-        if (this.adventure == null) {
-            throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
-        }
-        return this.adventure;
-    }
 
     @Override
     public void onLoad() {
@@ -89,7 +80,6 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
         serverID = serverIdConfig.getServerID();
 
-        this.adventure = BukkitAudiences.create(this);
         TextProvider.setTextProvider(new BukkitTextProvider());
         NotificationProvider.setProvider(new BukkitNotificationProvider(this));
         PlaceholderProvider.setProvider(new BukkitPlaceholderProvider(this));
@@ -114,10 +104,6 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
 
     @Override
     public void onDisable() {
-        if (this.adventure != null) {
-            this.adventure.close();
-            this.adventure = null;
-        }
         moduleLoader.disableModules();
         mySQLManager.getDatabase().shutdown();
     }

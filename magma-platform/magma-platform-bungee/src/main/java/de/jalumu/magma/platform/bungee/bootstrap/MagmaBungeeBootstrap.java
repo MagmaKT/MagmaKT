@@ -31,20 +31,11 @@ import java.io.File;
 @BungeecordPlugin(name = "MagmaKT-Bungee", version = "0.0.1", description = "MagmaKT for Bungeecord", author = "JaLuMu", dependsPlugin = {})
 public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlatform {
 
-    private BungeeAudiences adventure;
-
     private ModuleLoader moduleLoader;
 
     private ServerIdConfig serverIdConfig;
 
     private String serverID;
-
-    public BungeeAudiences adventure() {
-        if (this.adventure == null) {
-            throw new IllegalStateException("Cannot retrieve audience provider while plugin is not enabled");
-        }
-        return this.adventure;
-    }
 
     @Override
     public void initialize() {
@@ -53,7 +44,6 @@ public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlat
 
     @Override
     public void start() {
-        this.adventure = BungeeAudiences.create(this);
 
         File serverIdFile = new File(getDataFolder(), "serverID.yml");
 
@@ -86,10 +76,6 @@ public class MagmaBungeeBootstrap extends BungeeApplication implements MagmaPlat
 
     @Override
     public void shutdown() {
-        if (this.adventure != null) {
-            this.adventure.close();
-            this.adventure = null;
-        }
         moduleLoader.disableModules();
     }
 
