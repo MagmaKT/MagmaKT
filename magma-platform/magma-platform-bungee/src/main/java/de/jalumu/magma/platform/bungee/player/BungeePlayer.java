@@ -3,6 +3,7 @@ package de.jalumu.magma.platform.bungee.player;
 import de.jalumu.magma.platform.bungee.bootstrap.MagmaBungeeBootstrap;
 import de.jalumu.magma.player.MagmaPlayer;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.UUID;
@@ -44,6 +45,7 @@ public class BungeePlayer implements MagmaPlayer {
 
     @Override
     public Audience getAudience() {
-        return magma.adventure().player(player);
+        BungeeAudiences audiences = (BungeeAudiences) magma.getAudience();
+        return audiences.player(player);
     }
 }

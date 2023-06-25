@@ -2,7 +2,9 @@ package de.jalumu.magma.platform.bukkit.player;
 
 import de.jalumu.magma.platform.bukkit.bootstrap.MagmaBukkitBootstrap;
 import de.jalumu.magma.player.MagmaPlayer;
+import de.jalumu.magma.text.placeholder.Placeholders;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -44,6 +46,7 @@ public class BukkitPlayer implements MagmaPlayer {
 
     @Override
     public Audience getAudience() {
-        return magma.adventure().player(player);
+        BukkitAudiences audiences = (BukkitAudiences) magma.getAudience();
+        return audiences.player(player);
     }
 }

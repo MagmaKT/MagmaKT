@@ -3,8 +3,6 @@ package de.jalumu.magma.platform.bungee.application;
 import de.exlll.configlib.YamlConfigurationProperties;
 import de.jalumu.magma.platform.base.application.MagmaApplicationBase;
 import de.jalumu.magma.platform.bungee.command.MagmaBungeeCommandAnnotationReplacer;
-import de.jalumu.magma.platform.bungee.text.notification.BungeeNotificationProvider;
-import de.jalumu.magma.text.notification.NotificationProvider;
 import net.kyori.adventure.platform.AudienceProvider;
 import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;

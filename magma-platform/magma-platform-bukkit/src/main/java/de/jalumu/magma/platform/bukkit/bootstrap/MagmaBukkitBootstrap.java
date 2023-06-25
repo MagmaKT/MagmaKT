@@ -11,6 +11,7 @@ import de.jalumu.magma.platform.ServerImplementation;
 import de.jalumu.magma.platform.base.config.serializer.TextSerializer;
 import de.jalumu.magma.platform.base.module.ModuleLoader;
 import de.jalumu.magma.platform.base.platform.util.SplashScreen;
+import de.jalumu.magma.platform.bukkit.application.BukkitApplication;
 import de.jalumu.magma.platform.bukkit.command.MagmaBukkitCommandAnnotationReplacer;
 import de.jalumu.magma.platform.bukkit.config.TestConfig;
 import de.jalumu.magma.platform.bukkit.module.BukkitModuleLoader;
@@ -41,7 +42,7 @@ import java.nio.file.Paths;
 import java.util.Locale;
 
 @BukkitPlugin(name = "MagmaKT-Bukkit", version = "Dev-Build", description = "MagmaKT for Bukkit", author = "JaLuMu", dependsPlugin = {}, softDependsPlugin = {"ProtocolLib", "LuckPerms"})
-public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
+public class MagmaBukkitBootstrap extends BukkitApplication implements MagmaPlatform {
 
     private ModuleLoader moduleLoader;
 
@@ -54,7 +55,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     private String serverID;
 
     @Override
-    public void onLoad() {
+    public void initialize() {
         MagmaPlatformProvider.setPlatform(this);
         try {
             Files.createDirectories(Paths.get(this.getDataFolder().toPath() + File.separator + "modules"));
@@ -64,7 +65,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     }
 
     @Override
-    public void onEnable() {
+    public void start() {
         Metrics metrics = new Metrics(this, 16417);
 
         File serverIdFile = new File(getDataFolder(), "serverID.yml");
@@ -103,7 +104,7 @@ public class MagmaBukkitBootstrap extends JavaPlugin implements MagmaPlatform {
     }
 
     @Override
-    public void onDisable() {
+    public void shutdown() {
         moduleLoader.disableModules();
         mySQLManager.getDatabase().shutdown();
     }
