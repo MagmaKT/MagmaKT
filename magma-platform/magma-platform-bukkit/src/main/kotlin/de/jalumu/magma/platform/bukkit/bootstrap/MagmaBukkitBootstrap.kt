@@ -26,12 +26,12 @@ import de.jalumu.magma.text.TextProvider
 import de.jalumu.magma.text.notification.NotificationProvider
 import de.jalumu.magma.text.placeholder.PlaceholderProvider
 import org.bstats.bukkit.Metrics
-import revxrsal.commands.CommandHandler
 import revxrsal.commands.bukkit.BukkitCommandHandler
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.logging.Logger
 
 @BukkitPlugin(
     name = "MagmaKT-Bukkit",
@@ -47,11 +47,36 @@ class MagmaBukkitBootstrap : BukkitApplication(), MagmaPlatform {
 
     private var mySQLManager: BukkitMySQLManager? = null
 
-    private lateinit var commandHandler: BukkitCommandHandler
+    override lateinit var commandHandler: BukkitCommandHandler
 
     private var serverIdConfig: ServerIdConfig? = null
 
-    private var serverID: String? = null
+    override val magmaImplementationName: String
+        get() {
+            return pluginMeta.name
+        }
+    override val magmaImplementationVersion: String
+        get() = pluginMeta.version
+
+    override val platformType: MagmaPlatformType = MagmaPlatformType.GAMESERVER
+    override val serverImplementation: ServerImplementation = ServerImplementation.PAPER
+
+    override var serverID: String? = null
+    override val platformName: String
+        get() {
+            return server.name
+
+        }
+    override val platformVersion: String
+        get() {
+            return server.version
+        }
+    override val magmaLogger: Logger
+        get() {
+            return super.getLogger()
+        }
+    override val magmaPluginInstance: Any = this
+
     override fun initialize() {
         MagmaPlatformProvider.setPlatform(this)
         try {
@@ -104,39 +129,5 @@ class MagmaBukkitBootstrap : BukkitApplication(), MagmaPlatform {
         mySQLManager!!.database?.shutdown()
     }
 
-    override fun getVersion(): String {
-        return description.version
-    }
 
-    override fun getPlatformType(): MagmaPlatformType {
-        return MagmaPlatformType.GAMESERVER
-    }
-
-    override fun getServerImplementation(): ServerImplementation {
-        return ServerImplementation.PAPER
-    }
-
-    override fun getPlatformName(): String {
-        return server.name
-    }
-
-    override fun getPlatformVersion(): String {
-        return server.version
-    }
-
-    override fun getServerID(): String {
-        return serverID!!
-    }
-
-    override fun setServerID(serverID: String) {
-        this.serverID = serverID
-    }
-
-    override fun getCommandHandler(): CommandHandler {
-        return commandHandler
-    }
-
-    override fun getMagmaPluginInstance(): Any {
-        return this
-    }
 }

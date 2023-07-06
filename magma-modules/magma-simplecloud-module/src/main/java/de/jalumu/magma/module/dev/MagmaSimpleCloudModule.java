@@ -29,7 +29,7 @@ public class MagmaSimpleCloudModule extends BaseModule implements Cloud {
     @Override
     public void onEnable() {
         String serverID = CloudPlugin.getInstance().getThisServiceName();
-        MagmaPlatform.getPlatform().setServerID(serverID);
+        MagmaPlatform.Companion.getPlatform().setServerID(serverID);
         CloudProvider.setCloud(this);
 
         Sandbox.register("cloud", (player, platform) -> {

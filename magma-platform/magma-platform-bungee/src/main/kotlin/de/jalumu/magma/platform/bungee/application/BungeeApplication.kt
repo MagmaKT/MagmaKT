@@ -11,8 +11,11 @@ import revxrsal.commands.CommandHandler
 import revxrsal.commands.bungee.BungeeCommandHandler
 
 abstract class BungeeApplication : Plugin(), MagmaApplicationBase {
-    private lateinit var commandHandler: CommandHandler
+    override lateinit var commandHandler: CommandHandler
     private var adventure: BungeeAudiences? = null
+    override val audience: AudienceProvider?
+        get() = adventure()
+
     private var configurationProperties: YamlConfigurationProperties.Builder<*>? = null
     private fun adventure(): BungeeAudiences? {
         checkNotNull(adventure) { "Cannot retrieve audience provider while plugin is not enabled" }
@@ -41,13 +44,5 @@ abstract class BungeeApplication : Plugin(), MagmaApplicationBase {
             adventure!!.close()
             adventure = null
         }
-    }
-
-    override fun getAudience(): AudienceProvider {
-        return adventure()!!
-    }
-
-    override fun getCommandHandler(): CommandHandler {
-        return commandHandler!!
     }
 }

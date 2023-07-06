@@ -20,6 +20,7 @@ import de.jalumu.magma.text.TextProvider
 import de.jalumu.magma.text.notification.NotificationProvider
 import de.jalumu.magma.text.placeholder.PlaceholderProvider
 import java.io.File
+import java.util.logging.Logger
 
 @BungeecordPlugin(
     name = "MagmaKT-Bungee",
@@ -29,9 +30,34 @@ import java.io.File
     dependsPlugin = []
 )
 class MagmaBungeeBootstrap : BungeeApplication(), MagmaPlatform {
+
+
+    override val magmaImplementationName: String
+        get() {
+            return this.description.name
+        }
+    override val magmaImplementationVersion: String
+        get() {
+            return this.description.version
+        }
+    override val platformType: MagmaPlatformType = MagmaPlatformType.PROXY
+    override val serverImplementation: ServerImplementation = ServerImplementation.BUNGEECORD
+    override val platformName: String
+        get() {
+            return proxy.name
+        }
+    override val platformVersion: String
+        get() {
+            return proxy.version
+        }
+    override val magmaLogger: Logger
+        get() = this.logger
+    override val magmaPluginInstance: Any
+        get() = this
+
     private lateinit var moduleLoader: ModuleLoader
     private lateinit var serverIdConfig: ServerIdConfig
-    private var serverID: String? = null
+    override var serverID: String? = null
     override fun initialize() {
         MagmaPlatformProvider.setPlatform(this)
     }
@@ -62,39 +88,4 @@ class MagmaBungeeBootstrap : BungeeApplication(), MagmaPlatform {
         moduleLoader!!.disableModules()
     }
 
-    override fun getName(): String {
-        return description.name
-    }
-
-    override fun getVersion(): String {
-        return description.version
-    }
-
-    override fun getPlatformType(): MagmaPlatformType {
-        return MagmaPlatformType.PROXY
-    }
-
-    override fun getServerImplementation(): ServerImplementation {
-        return ServerImplementation.BUNGEECORD
-    }
-
-    override fun getPlatformName(): String {
-        return proxy.name
-    }
-
-    override fun getPlatformVersion(): String {
-        return proxy.version
-    }
-
-    override fun getServerID(): String {
-        return serverID!!
-    }
-
-    override fun setServerID(serverID: String) {
-        this.serverID = serverID
-    }
-
-    override fun getMagmaPluginInstance(): Any {
-        return this
-    }
 }

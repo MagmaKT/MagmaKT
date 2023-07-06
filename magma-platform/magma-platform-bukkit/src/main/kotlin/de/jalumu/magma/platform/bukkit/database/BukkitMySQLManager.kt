@@ -44,9 +44,9 @@ class BukkitMySQLManager(bukkitBootstrap: MagmaBukkitBootstrap) {
         }
         if (configuration.getBoolean("mysql.enabled")) {
             database = MySQLDatabase(
-                configuration.getString("mysql.host"),
+                configuration.getString("mysql.host")!!,
                 configuration.getInt("mysql.port"),
-                configuration.getString("mysql.database"),
+                configuration.getString("mysql.database")!!,
                 configuration.getString("mysql.user"),
                 configuration.getString("mysql.password")
             )
