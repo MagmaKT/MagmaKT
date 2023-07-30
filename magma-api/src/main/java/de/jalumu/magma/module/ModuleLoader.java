@@ -2,6 +2,9 @@ package de.jalumu.magma.module;
 
 import java.util.Collection;
 
+/**
+ * An interface for Module Loader
+ */
 public interface ModuleLoader {
 
     void registerModule(MagmaModule module);

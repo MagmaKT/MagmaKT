@@ -4,12 +4,16 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.jetbrains.dokka' version '1.8.20'
 }
 
 group 'de.jalumu.magma'
 version '1.0.24'
 
 allprojects {
+
+    apply plugin: 'org.jetbrains.dokka'
+
     repositories {
     
         maven {

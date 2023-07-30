@@ -9,6 +9,9 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 import java.io.IOException
 
+/**
+ * The Provider for BukkitNotifications
+ */
 class BukkitNotificationProvider(private val magma: MagmaBukkitBootstrap) : NotificationProvider() {
     private val configuration: YamlConfiguration
 

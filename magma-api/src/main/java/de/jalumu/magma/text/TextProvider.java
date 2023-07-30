@@ -1,5 +1,8 @@
 package de.jalumu.magma.text;
 
+/**
+ * A helper class for @{@link Text}
+ */
 public abstract class TextProvider {
 
     private static TextProvider textProvider = null;

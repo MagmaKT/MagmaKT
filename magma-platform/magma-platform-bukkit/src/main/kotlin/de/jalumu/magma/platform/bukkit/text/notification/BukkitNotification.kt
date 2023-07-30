@@ -4,6 +4,9 @@ import de.jalumu.magma.platform.base.text.notification.NotificationBaseImp
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
 
+/**
+ * The Notification implementation for the bukkit platform
+ */
 class BukkitNotification : NotificationBaseImp() {
     private var templateString: String? = null
     private var soundString: String? = null

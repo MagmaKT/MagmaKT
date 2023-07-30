@@ -5,6 +5,9 @@ import net.kyori.adventure.text.Component;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * A translatable Text with support for different parser
+ */
 public interface Text {
 
     static Text text(String text) {

@@ -5,6 +5,9 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 
+/**
+ * With Notifications you can send a Text with sound from pre-configured templates
+ */
 public interface Notification {
 
     static Notification debug(){

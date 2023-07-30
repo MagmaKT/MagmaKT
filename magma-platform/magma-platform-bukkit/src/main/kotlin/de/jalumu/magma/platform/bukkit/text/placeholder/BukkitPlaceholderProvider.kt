@@ -10,6 +10,9 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import java.util.*
 
+/**
+ * A provider for bukkit's default placeholders
+ */
 class BukkitPlaceholderProvider(private val magma: MagmaBukkitBootstrap) : PlaceholderProvider() {
     override fun getGlobal(): TagResolver {
         return TagResolver.builder()

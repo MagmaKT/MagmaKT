@@ -6,6 +6,9 @@ import de.jalumu.magma.player.MagmaPlayer;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * A Sandbox is a helper class to test code ingame
+ */
 public interface Sandbox {
 
     HashMap<String, Sandbox> SANDBOX_HASH_MAP = new HashMap<>();

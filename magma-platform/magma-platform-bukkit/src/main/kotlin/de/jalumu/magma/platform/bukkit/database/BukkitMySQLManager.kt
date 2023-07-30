@@ -8,6 +8,9 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 import java.io.IOException
 
+/**
+ * A Manager for creating connections to MySQL databases
+ */
 class BukkitMySQLManager(bukkitBootstrap: MagmaBukkitBootstrap) {
     var database: MySQLDatabase? = null
     private val config: File

@@ -10,6 +10,7 @@ import de.jalumu.magma.platform.MagmaPlatformType
 import de.jalumu.magma.platform.ServerImplementation
 import de.jalumu.magma.platform.base.config.ServerIdConfig
 import de.jalumu.magma.platform.base.config.serializer.TextSerializer
+import de.jalumu.magma.platform.base.ext.discord.DiscordWebhook
 import de.jalumu.magma.platform.base.module.ModuleLoader
 import de.jalumu.magma.platform.base.platform.util.SplashScreen
 import de.jalumu.magma.platform.bukkit.application.BukkitApplication
@@ -23,16 +24,22 @@ import de.jalumu.magma.platform.bukkit.text.placeholder.BukkitPlaceholderProvide
 import de.jalumu.magma.player.PlayerProvider
 import de.jalumu.magma.text.Text
 import de.jalumu.magma.text.TextProvider
+import de.jalumu.magma.text.notification.Notification
 import de.jalumu.magma.text.notification.NotificationProvider
 import de.jalumu.magma.text.placeholder.PlaceholderProvider
+import de.jalumu.magma.util.sandbox.Sandbox
 import org.bstats.bukkit.Metrics
 import revxrsal.commands.bukkit.BukkitCommandHandler
 import java.io.File
 import java.io.IOException
+import java.lang.Exception
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.logging.Logger
 
+/**
+ * The entrypoint for the MagmaKT BukkitPlugin
+ */
 @BukkitPlugin(
     name = "MagmaKT-Bukkit",
     version = "Dev-Build",
@@ -122,6 +129,15 @@ class MagmaBukkitBootstrap : BukkitApplication(), MagmaPlatform {
         getCommand("magma")!!.setExecutor(de.jalumu.magma.platform.bukkit.command.MagmaCommand(this))
 
         mySQLManager = BukkitMySQLManager(this)
+
+        Sandbox.register("discord", Sandbox { player, platform ->
+            val webhook = DiscordWebhook("https://discord.com/api/webhooks/1130235531696033924/gQqFW4HuHyc7Dw63oavrKTSE-uKBTokJkKgV585Rk5QIleBSFh7RVylLm6SMY0fQxyla").apply {
+                setUsername("MagmaKT-Error-Handler")
+            }
+            webhook.execute()
+            Notification.info("Message send").send(player.audience)
+        })
+
     }
 
     override fun shutdown() {

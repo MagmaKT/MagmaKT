@@ -2,6 +2,9 @@ package de.jalumu.magma.player;
 
 import java.util.UUID;
 
+/**
+ * A provider class for @{@link Players}
+ */
 public abstract class PlayerProvider {
 
     private static PlayerProvider playerProvider = null;

@@ -3,6 +3,9 @@ package de.jalumu.magma.platform
 import revxrsal.commands.CommandHandler
 import java.util.logging.Logger
 
+/**
+ * MagmaPlatform is an Entrypoint for the MagmaKT platform plugins
+ */
 interface MagmaPlatform {
     val magmaImplementationName: String
     val magmaImplementationVersion: String

@@ -11,6 +11,9 @@ import revxrsal.commands.bukkit.annotation.CommandPermission
 import java.lang.reflect.AnnotatedElement
 import java.util.*
 
+/**
+ * An Annotation Replacer to translate MagmaCommands to Lamp
+ */
 class MagmaBukkitCommandAnnotationReplacer : AnnotationReplacer<MagmaCommand?> {
     override fun replaceAnnotations(element: AnnotatedElement, annotation: MagmaCommand): Collection<Annotation>? {
         println("Translating " + annotation.command)

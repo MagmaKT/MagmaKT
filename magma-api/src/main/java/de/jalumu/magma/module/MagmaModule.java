@@ -4,6 +4,9 @@ import de.jalumu.magma.platform.MagmaPlatform;
 
 import java.util.logging.Logger;
 
+/**
+ * An interface for Magma Modules
+ */
 public interface MagmaModule {
 
     void onLoad();

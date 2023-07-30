@@ -6,6 +6,9 @@ import de.jalumu.magma.player.MagmaPlayer
 import org.bukkit.entity.Player
 import java.util.*
 
+/**
+ * The Provider for Bukkit players
+ */
 class BukkitPlayerProvider(private val magma: MagmaBukkitBootstrap) : BasePlayerProvider() {
     override fun getOnlinePlayer(name: String): MagmaPlayer {
         val player = magma.server.getPlayer(name)

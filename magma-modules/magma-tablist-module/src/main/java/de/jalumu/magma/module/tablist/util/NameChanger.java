@@ -38,10 +38,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * This class allows you to change a player's nametag
- * <p>
+ *
  * It requires ProtocolLib and only works on 1.8-1.8.3
  * If you need a 1.7 version, use TagAPI
- * </p>
+ *
  *
  * @author Techcable
  */
@@ -80,9 +80,8 @@ public class NameChanger {
 
     /**
      * Change the player's name to the provided string
-     * <br>
+     *
      * The player may disappear for approximately 2 ticks after you change it
-     * </br>
      *
      * @param player   player whos name to change
      * @param fakeName the player's new name
@@ -94,9 +93,8 @@ public class NameChanger {
 
     /**
      * Reset the player's name to it's original value
-     * <br>
+     *
      * The player may disappear for approximately 2 ticks after you change it
-     * </br>
      *
      * @param player player whos name to change back to the original value
      */

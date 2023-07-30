@@ -7,6 +7,9 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import org.bukkit.entity.Player
 import java.util.*
 
+/**
+ * The Bukkit implementation for MagmaPlayer
+ */
 class BukkitPlayer(private val magma: MagmaBukkitBootstrap, private val player: Player) : MagmaPlayer {
     override fun getName(): String {
         return player.name
