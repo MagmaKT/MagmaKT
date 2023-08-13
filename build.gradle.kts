@@ -9,16 +9,46 @@ plugins {
 group = "de.jalumu.magma"
 version = "1.0.24"
 
+val paperVersion = "1.19.3-R0.1-SNAPSHOT"
+val waterfallVersion = "1.19-R0.1-SNAPSHOT"
+val adventureVersion = "4.11.0"
+val adventurePlatformVersion = "4.1.1"
+
 allprojects {
 
     apply(plugin = "org.jetbrains.dokka")
 
     this.group = group
-    this.version = group
+    this.version = version
+
+    ext {
+        set("paperVersion", paperVersion)
+        set("waterfallVersion", waterfallVersion)
+        set("adventureVersion", adventureVersion)
+        set("adventurePlatformVersion", adventurePlatformVersion)
+    }
+
 
 
     repositories {
-    
+
+        maven {
+            name = "papi"
+            url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+        }
+        maven {
+            name = "papermc"
+            url = uri("https://repo.papermc.io/repository/maven-public/")
+        }
+        maven {
+            name = "dmulloy2"
+            url = uri("https://repo.dmulloy2.net/repository/public/")
+        }
+        maven {
+            name = "SimpleCloud"
+            url = uri("https://repo.thesimplecloud.eu/artifactory/gradle-release-local/")
+        }
+
         maven {
             url = uri("https://maven.pkg.github.com/JaLuMu/MagmaKT")
             credentials {
@@ -39,22 +69,7 @@ allprojects {
             name = "jitpack"
             url = uri("https://jitpack.io")
         }
-        maven {
-            name = "papi"
-            url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
-        }
-        maven {
-            name = "papermc"
-            url = uri("https://repo.papermc.io/repository/maven-public/")
-        }
-        maven {
-            name = "dmulloy2"
-            url = uri("https://repo.dmulloy2.net/repository/public/")
-        }
-        maven {
-            name = "SimpleCloud"
-            url = uri("https://repo.thesimplecloud.eu/artifactory/gradle-release-local/")
-        }
+
     }
 
 }

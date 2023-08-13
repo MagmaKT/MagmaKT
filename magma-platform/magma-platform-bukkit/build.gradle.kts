@@ -8,14 +8,18 @@ plugins {
 group = rootProject.group
 version = rootProject.version
 
+val paperVersion = ext.get("paperVersion") as String
+val adventureVersion = ext.get("adventureVersion") as String
+val adventurePlatformVersion = ext.get("adventurePlatformVersion") as String
+
 dependencies {
 
     // Magma-Dependencies
     api(project(":magma-platform:magma-platform-base"))
-    api("net.kyori:adventure-platform-bukkit:4.1.1")
+    api("net.kyori:adventure-platform-bukkit:$adventurePlatformVersion")
 
     // Minecraft-Dependencies
-    api("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:$paperVersion")
 
     //Command
     api("com.github.Revxrsal.Lamp:bukkit:3.1.1")

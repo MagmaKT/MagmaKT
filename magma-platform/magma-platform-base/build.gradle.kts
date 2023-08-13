@@ -7,15 +7,13 @@ plugins {
 group = rootProject.group
 version = rootProject.version
 
-repositories {
-    mavenCentral()
-}
+val adventurePlatformVersion = ext.get("adventurePlatformVersion") as String
 
 dependencies {
 
     // Magma-Dependencies
     api(project(":magma-api"))
-    implementation("net.kyori:adventure-platform-api:4.1.1")
+    implementation("net.kyori:adventure-platform-api:$adventurePlatformVersion")
 
     // Minecraft-Dependencies
     compileOnly("com.mojang:authlib:3.11.50")

@@ -9,14 +9,18 @@ plugins {
 group = rootProject.group
 version = rootProject.version
 
+val waterfallVersion = ext.get("waterfallVersion") as String
+val adventureVersion = ext.get("adventureVersion") as String
+val adventurePlatformVersion = ext.get("adventurePlatformVersion") as String
+
 dependencies {
 
     // Magma-Dependencies
     api(project(":magma-platform:magma-platform-base"))
-    implementation("net.kyori:adventure-platform-bungeecord:4.1.1")
+    implementation("net.kyori:adventure-platform-bungeecord:$adventurePlatformVersion")
 
     // Minecraft-Dependencies
-    api("io.github.waterfallmc:waterfall-api:1.19-R0.1-SNAPSHOT")
+    compileOnly("io.github.waterfallmc:waterfall-api:$waterfallVersion")
 
     //Command
     api("com.github.Revxrsal.Lamp:bungee:3.1.1")

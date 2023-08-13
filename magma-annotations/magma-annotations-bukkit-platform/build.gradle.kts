@@ -7,8 +7,10 @@ plugins {
 group = rootProject.group
 version = rootProject.version
 
+val paperVersion = ext.get("paperVersion") as String
+
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:$paperVersion")
 }
 
 publishing {

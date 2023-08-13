@@ -7,6 +7,8 @@ plugins {
 group = rootProject.group
 version = rootProject.version
 
+val adventureVersion = ext.get("adventureVersion") as String
+
 repositories {
     mavenCentral()
 }
@@ -14,9 +16,9 @@ repositories {
 dependencies {
 
     // Adventure
-    api("net.kyori:adventure-api:4.11.0")
-    api("net.kyori:adventure-text-minimessage:4.11.0")
-    api("net.kyori:adventure-text-serializer-legacy:4.11.0")
+    api("net.kyori:adventure-api:$adventureVersion")
+    api("net.kyori:adventure-text-minimessage:$adventureVersion")
+    api("net.kyori:adventure-text-serializer-legacy:$adventureVersion")
 
     // Config
     api("de.exlll:configlib-core:4.2.0")
