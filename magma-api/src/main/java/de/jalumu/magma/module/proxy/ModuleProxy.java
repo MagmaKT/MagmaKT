@@ -3,6 +3,9 @@ package de.jalumu.magma.module.proxy;
 import de.jalumu.magma.module.MagmaModule;
 import de.jalumu.magma.platform.ServerImplementation;
 
+/**
+ * A wrapper for @{@link Proxy} to execute platform dependent code
+ */
 public class ModuleProxy {
 
     private MagmaModule module;

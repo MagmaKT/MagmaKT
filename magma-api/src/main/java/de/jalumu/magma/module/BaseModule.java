@@ -9,6 +9,9 @@ import lombok.Setter;
 import java.io.File;
 import java.util.logging.Logger;
 
+/**
+ * The base for Magma Modules
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

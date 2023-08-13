@@ -3,6 +3,9 @@ package de.jalumu.magma.module;
 import de.jalumu.magma.platform.MagmaPlatformType;
 import de.jalumu.magma.platform.ServerImplementation;
 
+/**
+ * Annotation for Magma Modules
+ */
 public @interface ModuleMeta {
 
         String name();

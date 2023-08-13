@@ -2,6 +2,9 @@ package de.jalumu.magma.text.notification;
 
 import net.kyori.adventure.sound.Sound;
 
+/**
+ * A Helper class for Notifications
+ */
 public abstract class NotificationProvider {
 
     private static NotificationProvider notificationProvider = null;

@@ -2,6 +2,9 @@ package de.jalumu.magma.player;
 
 import java.util.UUID;
 
+/**
+ * A helper class to get @{@link MagmaPlayer}
+ */
 public interface Players {
 
     static FetchedPlayer fetchPlayer(String name) {
