@@ -16,6 +16,7 @@ import java.util.*
 class BukkitPlaceholderProvider(private val magma: MagmaBukkitBootstrap) : PlaceholderProvider() {
     override fun getGlobal(): TagResolver {
         return TagResolver.builder()
+            .resolver(Placeholder.parsed("server_name", magma.serverID.toString()))
             .resolver(Placeholder.parsed("local_player_online", Bukkit.getOnlinePlayers().size.toString()))
             .build()
     }

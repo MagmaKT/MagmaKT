@@ -58,7 +58,7 @@ public class TablistHandler {
                 team.addPlayer(sorted);
                 team.color(ColorParser.parseName(ColorParser.parseColorCode(split)));
                 team.addEntry(sorted.getDisplayName());
-                i++;
+                i+=11;
             }
         }
 

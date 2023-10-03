@@ -46,7 +46,7 @@ import java.util.logging.Logger
     description = "MagmaKT for Bukkit",
     author = "JaLuMu",
     dependsPlugin = [],
-    softDependsPlugin = ["ProtocolLib", "LuckPerms"]
+    softDependsPlugin = ["ProtocolLib", "LuckPerms", "PlaceholderAPI","SimpleCloud-Plugin"]
 )
 class MagmaBukkitBootstrap : BukkitApplication(), MagmaPlatform {
 
